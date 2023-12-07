@@ -8,19 +8,71 @@
 #include <queue>
 #include <unordered_map>
 using namespace std;
+#define colaEsperaMax = 110000
+#define colaEsperaMin = 100000
+#define TrazaOBJMax = 1500 
+#define TrazaOBJMin = 1000 
+#define EventoMax = 80000
+#define EventoMin = 60000
 
 //cuadraticos
-void insertion_sort(){
-	
+void insertion_sort(int arr[], int n){
+	for(int i = 1; i < n; ++i){
+        int key = arr[i];
+        int j = i - 1;
+
+        while(j >= 0 && arr[j] > key){
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+
+        arr[j + 1]=key;
+    }
 	
 }
-void bubble_sort(){
+void bubble_sort(int arr[], int n){
+	    for(int i = 0; i < n - 1; ++i){
+        for(int j = 0; j < n - i - 1; ++j){
+            if (arr[j] > arr[j + 1]){
+                // Intercambiaa arr[j] y arr[j + 1]
+                int tempo = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = tempo;
+            }
+        }
+    }
 	
 }
-void selection_sort(){
-	
+void selection_sort(int arr[], int n){
+	for(int i = 0; i < n - 1; ++i){
+        // Encontrar el índice del elemento mínimo en el arreglo
+        int indice = i;
+        for(int j = i + 1; j < n; ++j){
+            if(arr[j] < arr[indice]){
+                indice = j;
+            }
+        }
+
+        // Intercambiar el elemento mínimo con el primero
+        int tempo = arr[i];
+        arr[i] = arr[indice];
+        arr[indice] = tempo;
+    }
 }
-void shell_sort(){
+void shell_sort(int arr[], int n){
+	for(int gap = n / 2; gap > 0; gap /= 2){
+        // Realizar el ordenamiento por inserción para el intervalo actual
+        for(int i = gap; i < n; ++i){
+            int temp = arr[i];
+            int j;
+
+            for(j = i; j >= gap && arr[j - gap] > temp; j -= gap){
+                arr[j] = arr[j - gap];
+            }
+
+            arr[j] = temp;
+        }
+    }
 	
 }
 
@@ -37,9 +89,25 @@ void heap_sort(){
 }
 
 void formacion1(){ //generar los numeros de forma ordenada
-	
-	
-	
+int actualim = 0;
+	vector<int>orden(actualim);
+	 for (int i = 1; i <= colaEsperaMax; ++i) {
+	 	actualim++;
+        orden.push_back(i);
+    }
+    actualim = 0;
+    vector<int>orden2(actualim);
+	 for (int i = 1; i <= TrazaOBJMax; ++i) {
+	 	actualim++;
+        orden2.push_back(i);
+    }
+    actualim = 0;
+   	vector<int>orden3(actualim);
+	 for (int i = 1; i <= EventoMax; ++i) {
+	 	actualim++;
+        orden3.push_back(i);
+    }
+	//return orden;	
 }
 
 //esta parte se realizara mediante una cola para poder tener un mayor rango en la caacidad de gregar los numeros
