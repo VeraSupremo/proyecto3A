@@ -7,13 +7,15 @@
 #include <windows.h>
 #include <queue>
 #include <unordered_map>
+#include <algorithm>
+#include <random>
 using namespace std;
-#define colaEsperaMax = 110000
-#define colaEsperaMin = 100000
-#define TrazaOBJMax = 1500 
-#define TrazaOBJMin = 1000 
-#define EventoMax = 80000
-#define EventoMin = 60000
+#define colaEsperaMax  110000
+#define colaEsperaMin  100000
+#define TrazaOBJMax  1500 
+#define TrazaOBJMin  1000 
+#define EventoMax  80000
+#define EventoMin  60000
 
 //cuadraticos
 void insertion_sort(int arr[], int n){
@@ -88,33 +90,111 @@ void heap_sort(){
 	
 }
 
-void formacion1(){ //generar los numeros de forma ordenada
-int actualim = 0;
-	vector<int>orden(actualim);
-	 for (int i = 1; i <= colaEsperaMax; ++i) {
+int formacion1(){ //generar los numeros de forma ordenada
+int actualim = 0,cont1=0,cont2= 0,cont3 = 0;
+	int orden[colaEsperaMax];
+	 for (int i = 1; i <= colaEsperaMax; i++) {
 	 	actualim++;
-        orden.push_back(i);
+	 	cont1++;
+        orden[i]= i;
     }
+    if(actualim >= colaEsperaMin){
+    	cout<<"C1 lista"<<endl;
+	}else{
+		return -1;
+	}
     actualim = 0;
-    vector<int>orden2(actualim);
-	 for (int i = 1; i <= TrazaOBJMax; ++i) {
+    
+   	 int orden2[TrazaOBJMax];
+	 for (int i = 1; i <= TrazaOBJMax; i++) {
 	 	actualim++;
-        orden2.push_back(i);
+	 	cont2 ++;
+        orden2[i]=i;
     }
+     if(actualim >= TrazaOBJMin){
+    	cout<<"C1 lista"<<endl;
+	}else{
+		return -1;
+	}
     actualim = 0;
-   	vector<int>orden3(actualim);
-	 for (int i = 1; i <= EventoMax; ++i) {
+
+   int orden3[EventoMax];
+	 for (int i = 1; i <= EventoMax; i++) {
 	 	actualim++;
-        orden3.push_back(i);
+	 	cont3++;
+        orden3[i]= i;
     }
-	//return orden;	
+     if(actualim >= EventoMin){
+    	cout<<"C1 lista"<<endl;
+	}else{
+		return -1;
+	}
+	
+	//aca se inicializaran las carreritas
+	/*insertion_sort(orden[],cont1);
+	insertion_sort(orden2[],cont2);
+	insertion_sort(orden3[],cont3);*/
+
+	
 }
 
 //esta parte se realizara mediante una cola para poder tener un mayor rango en la caacidad de gregar los numeros
-void formacion2(){ //generar los numeros de forma desordenada     
+int formacion2(){ //generar los numeros de forma desordenada     
+	int actualim = 0,cont1=0,cont2= 0,cont3 = 0;
+	
+	int desorden1[colaEsperaMax];
+	for (int i = 0; i < colaEsperaMax; ++i) {
+		actualim++;
+		cont1++;
+        desorden1[i] = i + 1;                         // Llenar el arreglo con números en orden
+    }
+    //                                             Mezclar el arreglo desordenadamente
+    random_device rd;
+    mt19937 gen(rd());
+    shuffle(desorden1, desorden1 + colaEsperaMax, gen);
+	if(actualim >= colaEsperaMin){
+    	cout<<"C1 lista"<<endl;
+	}else{
+		return -1;
+	}
+	//--------------------------------------------
+	actualim = 0;
+	int desorden2[TrazaOBJMax];
+	for (int i = 0; i < TrazaOBJMax; ++i) {
+		actualim++;
+		cont1++;
+        desorden2[i] = i + 1;  
+    }
+    random_device rd2;
+    mt19937 gen2(rd2());
+    shuffle(desorden2, desorden2 + TrazaOBJMax, gen2);
+	if(actualim >= TrazaOBJMin){
+    	cout<<"C1 lista"<<endl;
+	}else{
+		return -1;
+	}
+	//--------------------------------------------
+	actualim = 0;
+	int desorden3[EventoMax];
+	for (int i = 0; i < EventoMax; ++i) {
+		actualim++;
+		cont1++;
+        desorden3[i] = i + 1;
+    }
+    random_device rd3;
+    mt19937 gen3(rd3());
+    shuffle(desorden3, desorden3 + EventoMax, gen3);	
+	if(actualim >= EventoMin){
+    	cout<<"C1 lista"<<endl;
+	}else{
+		return -1;
+	}
+	
 	
 }
 void formacion3(){ //generar los numeros a la inversa de la primera 
+	
+	
 	
 }
 void formacion4(){ // generar umeros desordenados sin repetir
