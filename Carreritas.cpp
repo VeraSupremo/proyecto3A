@@ -139,7 +139,7 @@ int actualim = 0,cont1=0,cont2= 0,cont3 = 0;
 }
 
 //esta parte se realizara mediante una cola para poder tener un mayor rango en la caacidad de gregar los numeros
-int formacion2(){ //generar los numeros de forma desordenada     
+int formacion2(){ //generar los numeros de forma desordenada   sin repeticion   
 	int actualim = 0,cont1=0,cont2= 0,cont3 = 0;
 	
 	int desorden1[colaEsperaMax];
@@ -192,19 +192,64 @@ int formacion2(){ //generar los numeros de forma desordenada
 	
 	
 }
-void formacion3(){ //generar los numeros a la inversa de la primera 
+void formacion3(){ //generar los numeros a la inversa de la primera con posible repeticion
+	
 	
 	
 	
 }
-void formacion4(){ // generar umeros desordenados sin repetir
+int formacion4(){ // generar umeros desordenados con repeticion repeticion
+	int cont1 = 0, cont2 = 0, cont3 = 0, actualim = 0;
+
+    // Generar números aleatorios para el primer conjunto
+    int inverso1[colaEsperaMax];
+    for(int i = 0; i < colaEsperaMax; ++i){
+        cont1++;
+        actualim++;
+        inverso1[i] = rand()% colaEsperaMax + 1;  // Generar número aleatorio entre 1 y colaEsperaMax
+    }
+    if(actualim >= colaEsperaMin){
+    	cout<<"C1 lista"<<endl;
+	}else{
+		return -1;
+	}
+	//--------------------------------------------
+	actualim = 0;
+	int inverso2[TrazaOBJMax];
+    for(int i = 0; i < TrazaOBJMax; ++i){
+        cont2++;
+        actualim++;
+        inverso2[i] = rand()% TrazaOBJMax + 1;  // Generar número aleatorio entre 1 y TrazaOBJMax
+    }
+    //cout << "C2 inversa generada aleatoriamente" << std::endl;
+     if(actualim >= TrazaOBJMin){
+    	cout<<"C2 lista"<<endl;
+	}else{
+		return -1;
+	}
+	//--------------------------------------------
+	actualim = 0;
+    
+    int inverso3[EventoMax];
+    for(int i = 0; i < EventoMax; ++i){
+        cont3++;
+        actualim ++;
+        inverso3[i] = rand()% EventoMax + 1;  // Generar número aleatorio entre 1 y EventoMax
+    }
+    //cout << "C3 inversa generada aleatoriamente" << std::endl;
+	if(actualim >= EventoMin){
+    	cout<<"C3 lista"<<endl;
+	}else{
+		return -1;
+	}
+	
 	
 }
 
 
 int main(){
 int wh1 = 0;
-	
+//srand(time(NULL));	
 	
 cout<<"___________________________________________________"<<endl;
 cout<<"________________Carrera  del  orden________________"<<endl;
