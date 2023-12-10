@@ -91,9 +91,10 @@ void heap_sort(){
 }
 
 int formacion1(){ //generar los numeros de forma ordenada
-int actualim = 0,cont1=0,cont2= 0,cont3 = 0;
-	int orden[colaEsperaMax];
-	 for (int i = 1; i <= colaEsperaMax; i++) {
+	int actualim = 0,cont1=0,cont2= 0,cont3 = 0;
+	int limiteIntervalo = rand()%(110000 - 100000 + 1) + 100000;
+	int orden[limiteIntervalo];
+	 for (int i = 1; i <= limiteIntervalo; i++) {
 	 	actualim++;
 	 	cont1++;
         orden[i]= i;
@@ -105,8 +106,9 @@ int actualim = 0,cont1=0,cont2= 0,cont3 = 0;
 	}
     actualim = 0;
     
-   	 int orden2[TrazaOBJMax];
-	 for (int i = 1; i <= TrazaOBJMax; i++) {
+   	int limiteIntervalo2 = rand()%(1500 - 1000 + 1) + 1000;
+   	 int orden2[limiteIntervalo2];
+	 for (int i = 1; i <= limiteIntervalo2; i++) {
 	 	actualim++;
 	 	cont2 ++;
         orden2[i]=i;
@@ -117,9 +119,10 @@ int actualim = 0,cont1=0,cont2= 0,cont3 = 0;
 		return -1;
 	}
     actualim = 0;
-
-   int orden3[EventoMax];
-	 for (int i = 1; i <= EventoMax; i++) {
+    
+	int limiteIntervalo3 = rand()%(80000 - 60000 + 1) + 60000;
+   int orden3[limiteIntervalo3];
+	 for (int i = 1; i <= limiteIntervalo3; i++) {
 	 	actualim++;
 	 	cont3++;
         orden3[i]= i;
@@ -193,10 +196,37 @@ int formacion2(){ //generar los numeros de forma desordenada   sin repeticion
 	
 }
 void formacion3(){ //generar los numeros a la inversa de la primera con posible repeticion
+	int cont1 = 0, cont2 = 0, cont3 = 0, actualim = 0;
+ 	int limiteIntervalo = rand()%(110000 - 100000 + 1) + 100000;
+ 	int ivdef[limiteIntervalo];
+	for(int i = limiteIntervalo; i >= 1 ; i--){
+		cont1++;
+		actualim++;                                 // se supone que este for debe tomar el valor maximo permitido e ir decreciendo hasta el 1 y cada posicion se ira agregando 
+		ivdef[i] = i;
+	}
 	
 	
 	
+	//---------------------------------------------------------
+	actualim = 0;
+	int limiteIntervalo2 = rand()%(1500 - 1000 + 1) + 1000;
+ 	int ivdef2[limiteIntervalo2];
+	for(int i = limiteIntervalo2; i >= 1 ; i--){
+		cont2++;
+		actualim++;                                 // se supone que este for debe tomar el valor maximo permitido e ir decreciendo hasta el 1 y cada posicion se ira agregando 
+		ivdef2[i] = i;
+	}
 	
+	
+	
+	//--------------------------------------------------------
+	int limiteIntervalo3 = rand()%(80000 - 60000 + 1) + 60000;
+ 	int ivdef3[limiteIntervalo3];
+	for(int i = limiteIntervalo3; i >= 1 ; i--){
+		cont3++;
+		actualim++;                                 // se supone que este for debe tomar el valor maximo permitido e ir decreciendo hasta el 1 y cada posicion se ira agregando 
+		ivdef3[i] = i;
+	}
 }
 int formacion4(){ // generar umeros desordenados con repeticion repeticion
 	int cont1 = 0, cont2 = 0, cont3 = 0, actualim = 0;
