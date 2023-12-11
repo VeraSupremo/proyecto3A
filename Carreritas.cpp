@@ -82,22 +82,223 @@ void shell_sort(int arr[], int n){
 //logaritmicos
 void merge_sort(){
 	
+	
+	
 }
 void quick_sort(){
+	
+	
 	
 }
 void heap_sort(){
 	
+	
+	
 }
+int colaDEspera(){
+	//numero ordenado
+	int actualim = 0,cont1=0,cont2= 0,cont3 = 0,cont4 = 0;
+	int limiteIntervalo = rand()%(110000 - 100000 + 1) + 100000;
+	int orden[limiteIntervalo];
+	for (int i = 1; i <= limiteIntervalo; i++) {
+	 	actualim++;
+	 	cont1++;
+        orden[i]= i;
+        cout<<orden[i]<<endl;
+	
+    }
+    if(actualim >= colaEsperaMin){
+    	cout<<"C1a lista"<<endl;
+	}else{
+		return -1;
+	}
+	//numero desordenado sin repeticion
+	actualim = 0;
+	int limiteIntervaloDES = rand()%(110000 - 100000 + 1) + 100000;
+	int desorden1[limiteIntervaloDES];
+	for (int i = 0; i < colaEsperaMax; ++i) {
+		actualim++;
+		cont2++;
+        desorden1[i] = i + 1;                         // Llenar el arreglo con números en orden
+    }
+    //                                             Mezclar el arreglo desordenadamente
+    random_device rd;
+    mt19937 gen(rd());
+    shuffle(desorden1, desorden1 + colaEsperaMax, gen);
+	if(actualim >= colaEsperaMin){
+    	cout<<"C1b lista"<<endl;
+	}else{
+		return -1;
+	}
+	
+	
+	//inverso
+	
+	int limiteIntervaloINV = rand()%(110000 - 100000 + 1) + 100000;
+ 	int ivdef[limiteIntervaloINV];
+	for(int i = limiteIntervaloINV; i >= 1 ; i--){
+		cont3++;
+		actualim++;                                 // se supone que este for debe tomar el valor maximo permitido e ir decreciendo hasta el 1 y cada posicion se ira agregando 
+		ivdef[i] = i;
+	}
+	cout<<"C1c lista"<<endl;
+	
+	
+	//numero desordenado con repeticion
+	actualim = 0;
+	int limiteIntervalorev = rand()%(110000 - 100000 + 1) + 100000;
+	int inverso1[limiteIntervalorev];
+    for(int i = 0; i < limiteIntervalorev; ++i){
+        cont1++;
+        actualim++;
+        inverso1[i] = rand()% limiteIntervalorev + 1;  // Generar número aleatorio entre 1 y colaEsperaMax
+    }
+    if(actualim >= colaEsperaMin){
+    	cout<<"C1d lista"<<endl;
+	}else{
+		return -1;
+	}
+	
+}
+int TrazaObjetos(){
+	int actualim = 0,cont1=0,cont2= 0,cont3 = 0,cont4 = 0;
 
+	// ordenado
+	actualim = 0;
+   	int limiteIntervalo2ord = rand()%(1500 - 1000 + 1) + 1000;
+   	 int orden2[limiteIntervalo2ord];
+	 for (int i = 1; i <= limiteIntervalo2ord; i++) {
+	 	actualim++;
+	 	cont1 ++;
+        orden2[i]=i;
+        cout<<orden2[i]<<endl;
+
+    }
+     if(actualim >= TrazaOBJMin){
+    	cout<<"C2 lista"<<endl;
+	}else{
+		return -1;
+	}
+	
+	//desordenado sin repeticion
+	actualim = 0;
+	int limiteIntervalo2DES = rand()%(1500 - 1000 + 1) + 1000;
+	int desorden2[limiteIntervalo2DES];
+	for (int i = 0; i < limiteIntervalo2DES; ++i) {
+		actualim++;
+		cont2++;
+        desorden2[i] = i + 1;  
+    }
+    random_device rd2;
+    mt19937 gen2(rd2());
+    shuffle(desorden2, desorden2 + limiteIntervalo2DES, gen2);
+	if(actualim >= TrazaOBJMin){
+    	cout<<"C2 lista"<<endl;
+	}else{
+		return -1;
+	}	
+	
+	// inverso
+	actualim = 0;
+	int limiteIntervalo2REP = rand()%(1500 - 1000 + 1) + 1000;
+ 	int ivdef2[limiteIntervalo2REP];
+	for(int i = limiteIntervalo2REP; i >= 1 ; i--){
+		cont3++;
+		actualim++;                                 // se supone que este for debe tomar el valor maximo permitido e ir decreciendo hasta el 1 y cada posicion se ira agregando 
+		ivdef2[i] = i;
+	}
+	
+	//desordenado con repeticion
+	actualim = 0;
+	int limiteIntervalo2NRP = rand()%(1500 - 1000 + 1) + 1000;
+	int inverso2[limiteIntervalo2NRP];
+    for(int i = 0; i < limiteIntervalo2NRP; ++i){
+        cont4++;
+        actualim++;
+        inverso2[i] = rand()% limiteIntervalo2NRP + 1;  // Generar número aleatorio entre 1 y TrazaOBJMax
+    }
+     if(actualim >= TrazaOBJMin){
+    	cout<<"C2 lista"<<endl;
+	}else{
+		return -1;
+	}
+	
+	
+}
+int Evento_Escenario(){
+	int actualim = 0,cont1=0,cont2= 0,cont3 = 0,cont4 = 0;
+	//ordenado
+   int limiteIntervalo3ORD = rand()%(80000 - 60000 + 1) + 60000;
+   int orden3[limiteIntervalo3ORD];
+	 for (int i = 1; i <= limiteIntervalo3ORD; i++) {
+	 	actualim++;
+	 	cont1++;
+        orden3[i]= i;
+        cout<<orden3[i]<<endl;
+    }
+     if(actualim >= EventoMin){
+    	cout<<"C3 lista"<<endl;
+	}else{
+		return -1;
+	}
+	
+	
+	//desordenado sin repeticion
+	actualim = 0;
+	int limiteIntervalo3DES= rand()%(80000 - 60000 + 1) + 60000;
+	int desorden3[limiteIntervalo3DES];
+	for (int i = 0; i < limiteIntervalo3DES; ++i) {
+		actualim++;
+		cont2++;
+        desorden3[i] = i + 1;
+    }
+    random_device rd3;
+    mt19937 gen3(rd3());
+    shuffle(desorden3, desorden3 + limiteIntervalo3DES, gen3);	
+	if(actualim >= EventoMin){
+    	cout<<"C3 lista"<<endl;
+	}else{
+		return -1;
+	}
+	
+	// inverso
+	
+	int limiteIntervalo3INV = rand()%(80000 - 60000 + 1) + 60000;
+ 	int ivdef3[limiteIntervalo3INV];
+	for(int i = limiteIntervalo3INV; i >= 1 ; i--){
+		cont3++;
+		actualim++;                                 // se supone que este for debe tomar el valor maximo permitido e ir decreciendo hasta el 1 y cada posicion se ira agregando 
+		ivdef3[i] = i;
+	}
+	
+	//desordenado con repeticion posible
+	actualim = 0;
+    int limiteIntervalo3DDS = rand()%(80000 - 60000 + 1) + 60000;
+    int inverso3[limiteIntervalo3DDS];
+    for(int i = 0; i < limiteIntervalo3DDS; ++i){
+        cont4++;
+        actualim ++;
+        inverso3[i] = rand()% limiteIntervalo3DDS + 1;  // Generar número aleatorio entre 1 y EventoMax
+    }
+	if(actualim >= EventoMin){
+    	cout<<"C3 lista"<<endl;
+	}else{
+		return -1;
+	}
+	
+	
+}
+/*
 int formacion1(){ //generar los numeros de forma ordenada
 	int actualim = 0,cont1=0,cont2= 0,cont3 = 0;
 	int limiteIntervalo = rand()%(110000 - 100000 + 1) + 100000;
 	int orden[limiteIntervalo];
-	 for (int i = 1; i <= limiteIntervalo; i++) {
+	for (int i = 1; i <= limiteIntervalo; i++) {
 	 	actualim++;
 	 	cont1++;
         orden[i]= i;
+        cout<<orden[i]<<endl;
+	
     }
     if(actualim >= colaEsperaMin){
     	cout<<"C1 lista"<<endl;
@@ -105,19 +306,23 @@ int formacion1(){ //generar los numeros de forma ordenada
 		return -1;
 	}
     actualim = 0;
-    
+    cin>>actualim;
    	int limiteIntervalo2 = rand()%(1500 - 1000 + 1) + 1000;
    	 int orden2[limiteIntervalo2];
 	 for (int i = 1; i <= limiteIntervalo2; i++) {
 	 	actualim++;
 	 	cont2 ++;
         orden2[i]=i;
+        cout<<orden2[i]<<endl;
+
     }
      if(actualim >= TrazaOBJMin){
-    	cout<<"C1 lista"<<endl;
+    	cout<<"C2 lista"<<endl;
 	}else{
 		return -1;
 	}
+	cin>>actualim;
+
     actualim = 0;
     
 	int limiteIntervalo3 = rand()%(80000 - 60000 + 1) + 60000;
@@ -126,21 +331,21 @@ int formacion1(){ //generar los numeros de forma ordenada
 	 	actualim++;
 	 	cont3++;
         orden3[i]= i;
+        cout<<orden3[i]<<endl;
     }
      if(actualim >= EventoMin){
-    	cout<<"C1 lista"<<endl;
+    	cout<<"C3 lista"<<endl;
 	}else{
 		return -1;
 	}
-	
+	cin>>actualim;
 	//aca se inicializaran las carreritas
-	/*insertion_sort(orden[],cont1);
+	insertion_sort(orden[],cont1);
 	insertion_sort(orden2[],cont2);
-	insertion_sort(orden3[],cont3);*/
-
+	insertion_sort(orden3[],cont3);
+	return 0;
 	
 }
-
 //esta parte se realizara mediante una cola para poder tener un mayor rango en la caacidad de gregar los numeros
 int formacion2(){ //generar los numeros de forma desordenada   sin repeticion   
 	int actualim = 0,cont1=0,cont2= 0,cont3 = 0;
@@ -172,7 +377,7 @@ int formacion2(){ //generar los numeros de forma desordenada   sin repeticion
     mt19937 gen2(rd2());
     shuffle(desorden2, desorden2 + TrazaOBJMax, gen2);
 	if(actualim >= TrazaOBJMin){
-    	cout<<"C1 lista"<<endl;
+    	cout<<"C2 lista"<<endl;
 	}else{
 		return -1;
 	}
@@ -188,14 +393,14 @@ int formacion2(){ //generar los numeros de forma desordenada   sin repeticion
     mt19937 gen3(rd3());
     shuffle(desorden3, desorden3 + EventoMax, gen3);	
 	if(actualim >= EventoMin){
-    	cout<<"C1 lista"<<endl;
+    	cout<<"C3 lista"<<endl;
 	}else{
 		return -1;
 	}
 	
-	
+	return 1;
 }
-void formacion3(){ //generar los numeros a la inversa de la primera con posible repeticion
+int formacion3(){ //generar los numeros a la inversa de la primera con posible repeticion
 	int cont1 = 0, cont2 = 0, cont3 = 0, actualim = 0;
  	int limiteIntervalo = rand()%(110000 - 100000 + 1) + 100000;
  	int ivdef[limiteIntervalo];
@@ -227,6 +432,8 @@ void formacion3(){ //generar los numeros a la inversa de la primera con posible 
 		actualim++;                                 // se supone que este for debe tomar el valor maximo permitido e ir decreciendo hasta el 1 y cada posicion se ira agregando 
 		ivdef3[i] = i;
 	}
+	cout<<"a"<<endl;
+	return 1;
 }
 int formacion4(){ // generar umeros desordenados con repeticion repeticion
 	int cont1 = 0, cont2 = 0, cont3 = 0, actualim = 0;
@@ -275,27 +482,27 @@ int formacion4(){ // generar umeros desordenados con repeticion repeticion
 	
 	
 }
-
+*/
 
 int main(){
 int wh1 = 0;
 //srand(time(NULL));	
 	
-cout<<"___________________________________________________"<<endl;
-cout<<"________________Carrera  del  orden________________"<<endl;
+cout<<"____________________________________________________________________________________"<<endl;
+cout<<"________________________________Carrera  del  orden_________________________________"<<endl;
 Sleep(1000);
-cout<<"      deberas elegir con cual de ls 4 opciones       "<<endl;
-cout<<"  crees que se ordenara mas rapido los numeros y de la forma en la que se entregaran    \n     para ser de los mejores guardianes del reino"<<endl;
-cout<<"___________________________________________________"<<endl;
-Sleep(1000);
-cout<<"."<<endl;
+cout<<"                      deberas elegir con cual de ls 4 opciones                      "<<endl;
+cout<<"  crees que se ordenara mas rapido los numeros y de la forma en la que se entregaran    \n                        para ser de los mejores guardianes del reino"<<endl;
+cout<<"____________________________________________________________________________________"<<endl;
 Sleep(1000);
 cout<<"."<<endl;
 Sleep(1000);
 cout<<"."<<endl;
-Sleep(1000);
+Sleep(700);
 cout<<"."<<endl;
-Sleep(1000);
+Sleep(700);
+cout<<"."<<endl;
+Sleep(800);
 cout<<"."<<endl;
 Sleep(1000);
 system("cls");
@@ -304,29 +511,35 @@ system("cls");
 int question = 0;
 while(wh1== 0){
 	wh1 = 0;
-	cout<<"______________Que opcion desea elegir______________"<<endl;
-	cout<<"           Opcion________ordenado_________1             "<<endl;  //acas edaran las opciones de que deben elegirr suceptible a cambio
-	cout<<"           Opcion______ desordenado ______2             "<<endl;
-	cout<<"           Opcion________invertido________3             "<<endl;
-	cout<<"           Opcion_desordenado sin repetir_4             "<<endl;
-	cout<<"           Opcion___________salir_________5             "<<endl;
-	cout<<"___________________________________________________"<<std::endl;
+	cout<<"___________________Que opcion desea elegir____________________"<<endl;
+	cout<<"           Opcion_________cola de espera________1             "<<endl;  //acas edaran las opciones de que deben elegirr suceptible a cambio
+	cout<<"           Opcion____trazabilidad de objetos____2             "<<endl;
+	cout<<"           Opcion___evento de cada escenario____3             "<<endl;
+	cout<<"           Opcion_____________salir_____________4             "<<endl;
+	cout<<"______________________________________________________________"<<std::endl;
 	cin>> question;
 	switch(question){
 		case 1:
-			
+			if(colaDEspera() == -1){
+				cerr<<"el proceso esta incorrecto"<<endl;
+				break;
+			}
 			break;
 		case 2:
-			
+			if(TrazaObjetos() == -1){
+				cerr<<"el proceso esta incorrecto"<<endl;
+				break;
+			}
 			break;
 		case 3:
-				
-	
+			//formacion3();
+			if(Evento_Escenario() == -1){
+				cerr<<"el proceso esta incorrecto"<<endl;
+				break;
+			}
 			break;
-		case 4:
-			
-			break;
-		case 5:	
+		
+		case 4:	
 			wh1= 1;
 			break;
 		default: cout<<"incorrecto vuelva a ingresar"<<endl;
