@@ -9,7 +9,10 @@
 #include <unordered_map>
 #include <algorithm>
 #include <random>
+#include <chrono>
 using namespace std;
+using namespace chrono;
+
 #define colaEsperaMax  110000
 #define colaEsperaMin  100000
 #define TrazaOBJMax  1500 
@@ -80,31 +83,130 @@ void shell_sort(int arr[], int n){
 
 
 //logaritmicos
-void merge_sort(){
-	
+void merge(int arr[], int min, int medio, int max){
+	int n1 = medio - min + 1;
+    int n2 = max - medio;
+	//ahora crear arrelgos
+	int izquierda[n1];
+	int derecha[n2];
+	for(int i = 0; i < n1; ++i){
+		izquierda[i] = arr[min + i];
+	}
+        
+    for(int j = 0; j < n2; ++j){
+    	derecha[j] = arr[medio + 1 + j];
+	}
+    int i = 0, j = 0, k = min;
+    while(i < n1 && j < n2){
+        if(izquierda[i] <= derecha[j]){
+            arr[k] = izquierda[i];
+            ++i;
+        }else{
+            arr[k] = derecha[j];
+            ++j;
+        }
+        ++k;
+    }
+	while(j < n2){
+        arr[k] = derecha[j];
+        ++j;
+        ++k;
+    }
+}
+void mergeSort(int arr[], int min, int max){
+    if(min < max){
+        // Encuentra el punto medio
+        int medio = min + (max - min)/2;
+        // Ordena la primera y la segunda mitad
+        mergeSort(arr, min, medio);
+        mergeSort(arr, medio + 1, max);
+        merge(arr, min, medio, max);
+    }
+}
+//quick sort<------------<----------<-------------<-----------------
+void intercambio(int a, int b){
+	int tim = a;
+	a= b;
+	b= tim;
+}
+int particion(int arr[], int inicio, int fin){
+    int pivote = arr[fin];
+    int i = inicio - 1;
+		cout<<"parte 5"<<endl;
+
+    for (int j = inicio; j < fin; j++){
+        if (arr[j] <= pivote) {
+            i++;
+            intercambio(arr[i], arr[j]);
+        }
+    }
+cout<<"parte 6"<<endl;
+
+
+    intercambio(arr[i + 1], arr[fin]);
+    		cout<<"parte 7"<<endl;
+
+    return i + 1;
+}
+void quick_sort(int arr[], int inicio, int fin){
+	if (inicio < fin){
+		cout<<"parte 1"<<endl;
+        int indiceParticion = particion(arr, inicio, fin);
+       	cout<<"parte 2"<<endl;
+
+        quick_sort(arr, inicio, indiceParticion - 1);
+       	cout<<"parte 3"<<endl;
+        quick_sort(arr, indiceParticion + 1, fin);
+        cout<<"parte 4"<<endl;
+
+    }	
 	
 	
 }
-void quick_sort(){
-	
-	
-	
+void heapify(int orden[], int n, int i){
+    int max = i; // Inicializa el raíz como máximo
+    int izquierda = 2 * i + 1;
+    int derecha = 2 * i + 2;
+
+    // Si el izq es mayor
+    if(izquierda < n && orden[izquierda] > orden[max])
+        max = izquierda;
+
+    // Si derecha es mayor
+    if(derecha < n && orden[derecha] > orden[max])
+        max = derecha;
+
+    // Si el máximo no es la raíz
+    if(max != i){
+        // Intercambiar el máximo con la raíz
+        std::swap(orden[i], orden[max]);
+        heapify(orden, n, max);
+    }
 }
-void heap_sort(){
-	
-	
-	
+void heapSort(int orden[], int max){
+    //reorganizar el arreglo
+    for (int i = max / 2 - 1; i >= 0; i--){
+    	heapify(orden, max, i);
+	}
+    
+    // Extraer elementos uno por uno
+    for(int i = max - 1; i > 0; i--){
+        // Mover la raíz actual al final
+        swap(orden[0], orden[i]);
+        // Llamar a heapify
+        heapify(orden, i, 0);
+    }
 }
+
 int colaDEspera(){
 	//numero ordenado
 	int actualim = 0,cont1=0,cont2= 0,cont3 = 0,cont4 = 0;
 	int limiteIntervalo = rand()%(110000 - 100000 + 1) + 100000;
 	int orden[limiteIntervalo];
-	for (int i = 1; i <= limiteIntervalo; i++) {
+	for (int i = 0; i <= limiteIntervalo; i++) {
 	 	actualim++;
 	 	cont1++;
-        orden[i]= i;
-        cout<<orden[i]<<endl;
+        orden[i]= i+1;
 	
     }
     if(actualim >= colaEsperaMin){
@@ -114,8 +216,7 @@ int colaDEspera(){
 	}
 	//numero desordenado sin repeticion
 	actualim = 0;
-	int limiteIntervaloDES = rand()%(110000 - 100000 + 1) + 100000;
-	int desorden1[limiteIntervaloDES];
+	int desorden1[limiteIntervalo];
 	for (int i = 0; i < colaEsperaMax; ++i) {
 		actualim++;
 		cont2++;
@@ -134,9 +235,8 @@ int colaDEspera(){
 	
 	//inverso
 	
-	int limiteIntervaloINV = rand()%(110000 - 100000 + 1) + 100000;
- 	int ivdef[limiteIntervaloINV];
-	for(int i = limiteIntervaloINV; i >= 1 ; i--){
+ 	int ivdef[limiteIntervalo];
+	for(int i = limiteIntervalo; i >= 1 ; i--){
 		cont3++;
 		actualim++;                                 // se supone que este for debe tomar el valor maximo permitido e ir decreciendo hasta el 1 y cada posicion se ira agregando 
 		ivdef[i] = i;
@@ -146,12 +246,11 @@ int colaDEspera(){
 	
 	//numero desordenado con repeticion
 	actualim = 0;
-	int limiteIntervalorev = rand()%(110000 - 100000 + 1) + 100000;
-	int inverso1[limiteIntervalorev];
-    for(int i = 0; i < limiteIntervalorev; ++i){
-        cont1++;
+	int deso1[limiteIntervalo];
+    for(int i = 0; i < limiteIntervalo; ++i){
+        cont4++;
         actualim++;
-        inverso1[i] = rand()% limiteIntervalorev + 1;  // Generar número aleatorio entre 1 y colaEsperaMax
+        deso1[i] = rand()% limiteIntervalo + 1;  // Generar número aleatorio entre 1 y colaEsperaMax
     }
     if(actualim >= colaEsperaMin){
     	cout<<"C1d lista"<<endl;
@@ -159,19 +258,315 @@ int colaDEspera(){
 		return -1;
 	}
 	
+	
+	//ahora se debe tomar el timepo y se tomara el tiempo de cada funcion
+	cout<<"ORDEN:  "<<endl;
+	long long tiempo_selection_sort = 0;
+	long long tiempo_insertion_sort = 0;
+	long long tiempo_bubble_sort = 0;
+	long long tiempo_shell_sort = 0;
+	long long tiempo_merge_sort = 0;
+	long long tiempo_quick_sort = 0;
+	long long tiempo_heap_sort = 0;
+
+	auto start_time = high_resolution_clock::now();
+	insertion_sort(orden,limiteIntervalo);
+	cout<<"1 bien"<<endl;
+	auto end_time = high_resolution_clock::now();
+	auto duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_insertion_sort = duration.count();
+	
+	
+	start_time = high_resolution_clock::now();
+	bubble_sort(orden,limiteIntervalo);
+		cout<<"2bien"<<endl;
+
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_bubble_sort = duration.count();
+
+	start_time = high_resolution_clock::now();	
+	selection_sort(orden,limiteIntervalo);
+	cout<<"3 bien"<<endl;
+
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_selection_sort = duration.count();
+
+	start_time = high_resolution_clock::now();	
+	shell_sort(orden,limiteIntervalo);
+	cout<<"4 bien"<<endl;
+
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_shell_sort = duration.count();
+
+	cout<<"aaaaaaa"<<endl;
+	start_time = high_resolution_clock::now();	
+	mergeSort(orden,0,limiteIntervalo-1);
+	cout<<"5 bien"<<endl;
+	
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_merge_sort = duration.count();
+//	cout<<"6 listo"<<endl;
+	
+	
+	start_time = high_resolution_clock::now();	
+//	quick_sort(orden,0,limiteIntervalo-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_quick_sort = duration.count();
+//	--------------->_------------->--------->heap_sort<----------<------<-<-<-<--------<------------
+	start_time = high_resolution_clock::now();	
+	heapSort(orden,limiteIntervalo);
+	cout<<"7 bien"<<endl;
+
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_heap_sort = duration.count();
+
+	cout<<"Insertion sort "<<tiempo_insertion_sort<<"\n"<<"Bubble sort "<<tiempo_bubble_sort<<endl;
+	cout<<"Selection sort "<<tiempo_selection_sort<<"\n"<<"Shell  sort "<<tiempo_shell_sort<<endl;
+	cout<<"Merge sort "<<tiempo_merge_sort<<"\n"<<"Quick sort "<<tiempo_quick_sort<<endl;
+	cout<<"Heap Sort "<<tiempo_heap_sort<<endl;
+
+/*	long long tiempoMIN;
+	string algmin;
+	bool empate = false;
+	if (tiempo_insertion_sort < tiempo_bubble_sort && tiempo_insertion_sort < tiempo_selection_sort &&
+	    tiempo_insertion_sort < tiempo_shell_sort && tiempo_insertion_sort < tiempo_merge_sort &&
+	    tiempo_insertion_sort < tiempo_quick_sort) {
+	    algmin = "Insertion Sort";
+	    tiempoMIN = tiempo_insertion_sort;
+	} else if (tiempo_bubble_sort < tiempo_selection_sort && tiempo_bubble_sort < tiempo_shell_sort &&
+        tiempo_bubble_sort < tiempo_merge_sort && tiempo_bubble_sort < tiempo_quick_sort){
+    	algmin = "Bubble Sort";
+    	tiempoMIN = tiempo_bubble_sort;
+	} else if(tiempo_selection_sort < tiempo_shell_sort && tiempo_selection_sort < tiempo_merge_sort &&
+           tiempo_selection_sort < tiempo_quick_sort){
+			algmin = "Selection Sort";
+			tiempoMIN = tiempo_selection_sort;
+	}else if(tiempo_shell_sort < tiempo_merge_sort && tiempo_shell_sort < tiempo_quick_sort){
+		algmin = "Shell Sort";
+		tiempoMIN = tiempo_shell_sort;
+	}else if(tiempo_merge_sort < tiempo_quick_sort){
+		algmin= "Merge Sort";
+		tiempoMIN = tiempo_merge_sort;
+	}else if(tiempo_insertion_sort == tiempo_bubble_sort ||
+        tiempo_insertion_sort == tiempo_selection_sort ||
+        tiempo_insertion_sort == tiempo_shell_sort ||
+        tiempo_insertion_sort == tiempo_merge_sort ||
+        tiempo_insertion_sort == tiempo_quick_sort ||
+        tiempo_bubble_sort == tiempo_selection_sort ||
+        tiempo_bubble_sort == tiempo_shell_sort ||
+        tiempo_bubble_sort == tiempo_merge_sort ||
+        tiempo_bubble_sort == tiempo_quick_sort ||
+        tiempo_selection_sort == tiempo_shell_sort ||
+        tiempo_selection_sort == tiempo_merge_sort ||
+        tiempo_selection_sort == tiempo_quick_sort ||
+        tiempo_shell_sort == tiempo_merge_sort ||
+        tiempo_shell_sort == tiempo_quick_sort ||
+        tiempo_merge_sort == tiempo_quick_sort ||
+		 tiempo_heap_sort ==){
+		cout<<"hay empate pero solo puede haber un ganador\npor eso el ganador sera el primero ejecutado con el valor identico a los otros"<<endl;
+		empate = true;
+	}
+	if(empate == true){
+		
+		
+	}
+	*/
+	
+	//aca tomar el tiempo de la segunda opcion desordenado y asi mas abajo
+	cout<<" \ndesordenado"<<endl;
+	long long tiempo_selection_sort2 = 0;
+	long long tiempo_insertion_sort2 = 0;
+	long long tiempo_bubble_sort2 = 0;
+	long long tiempo_shell_sort2 = 0;
+	long long tiempo_merge_sort2 = 0;
+	long long tiempo_quick_sort2 = 0;
+	long long tiempo_heap_sort2 = 0;
+	
+	
+	start_time = high_resolution_clock::now();
+	insertion_sort(desorden1,cont2);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_insertion_sort2 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	bubble_sort(desorden1,cont2);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_bubble_sort2 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	selection_sort(desorden1,cont2);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_selection_sort2 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	shell_sort(desorden1,cont2);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_shell_sort2 = duration.count();
+	
+	start_time = high_resolution_clock::now();	
+	mergeSort(desorden1,0,limiteIntervalo-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_merge_sort2 = duration.count();
+	
+	start_time = high_resolution_clock::now();	
+//	quick_sort(desorden1,0,limiteIntervalo-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_quick_sort2 = duration.count();
+//------------------------------------------------------------------------
+//	--------------->_------------->--------->heap_sort<----------<------<-<-<-<--------<------------
+	start_time = high_resolution_clock::now();	
+	heapSort(desorden1,limiteIntervalo);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_heap_sort2 = duration.count();
+	
+	cout<<"Insertion sort "<<tiempo_insertion_sort2<<"\n"<<"Bubble sort "<<tiempo_bubble_sort2<<endl;
+	cout<<"Selection sort "<<tiempo_selection_sort2<<"\n"<<"Shell  sort "<<tiempo_shell_sort2<<endl;
+	cout<<"Merge sort "<<tiempo_merge_sort2<<"\n"<<"Quick sort "<<tiempo_quick_sort2<<endl;
+	cout<<"Heap Sort "<<tiempo_heap_sort2<<endl;
+
+	//inverso
+	cout<<"\ninverso"<<endl;
+	long long tiempo_selection_sort3 = 0;
+	long long tiempo_insertion_sort3 = 0;
+	long long tiempo_bubble_sort3 = 0;
+	long long tiempo_shell_sort3 = 0;
+	long long tiempo_merge_sort3 = 0;
+	long long tiempo_quick_sort3 = 0;
+	long long tiempo_heap_sort3 = 0;
+	
+	start_time = high_resolution_clock::now();
+	insertion_sort(ivdef,cont3);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_insertion_sort3 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	bubble_sort(ivdef,cont3);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_bubble_sort3 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	selection_sort(ivdef,cont3);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_selection_sort3 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	shell_sort(ivdef,cont3);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_shell_sort3  = duration.count();
+	
+	start_time = high_resolution_clock::now();	
+	mergeSort(ivdef,0,limiteIntervalo-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_merge_sort3 = duration.count();
+	
+	start_time = high_resolution_clock::now();	
+//	quick_sort(ivdef,0,limiteIntervalo-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_quick_sort3 = duration.count();
+//--------------------------------------------------------------------------------------------------
+//	--------------->_------------->--------->heap_sort<----------<------<-<-<-<--------<------------
+	start_time = high_resolution_clock::now();	
+	heapSort(ivdef,limiteIntervalo);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_heap_sort3 = duration.count();	
+	
+	cout<<"Insertion sort "<<tiempo_insertion_sort3<<"\n"<<"Bubble sort "<<tiempo_bubble_sort3<<endl;
+	cout<<"Selection sort "<<tiempo_selection_sort3<<"\n"<<"Shell  sort "<<tiempo_shell_sort3<<endl;
+	cout<<"Merge sort "<<tiempo_merge_sort3<<"\n"<<"Quick sort "<<tiempo_quick_sort3<<endl;
+	cout<<"Heap Sort "<<tiempo_heap_sort3<<endl;
+
+
+	
+	//desordenado con repeticion
+	cout<<"\ndesorden con repetir"<<endl;
+	long long tiempo_selection_sort4 = 0;
+	long long tiempo_insertion_sort4 = 0;
+	long long tiempo_bubble_sort4 = 0;
+	long long tiempo_shell_sort4 = 0;
+	long long tiempo_merge_sort4 = 0;
+	long long tiempo_quick_sort4 = 0;
+	long long tiempo_heap_sort4 = 0;
+	
+	start_time = high_resolution_clock::now();
+	insertion_sort(deso1,cont4);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_insertion_sort4 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	bubble_sort(deso1,cont4);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_bubble_sort4 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	selection_sort(deso1,cont4);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_selection_sort4 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	shell_sort(deso1,cont4);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_shell_sort4  = duration.count();
+	
+	start_time = high_resolution_clock::now();	
+	mergeSort(deso1,0,limiteIntervalo-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_merge_sort4 = duration.count();
+	
+	start_time = high_resolution_clock::now();	
+//	quick_sort(deso1,0,limiteIntervalo-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_quick_sort4 = duration.count();
+//--------------------------------------------------------------------------------------------------
+//	--------------->_------------->--------->heap_sort<----------<------<-<-<-<--------<------------
+	start_time = high_resolution_clock::now();	
+	heapSort(deso1,limiteIntervalo);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_heap_sort4 = duration.count();	
+	
+	cout<<"Insertion sort "<<tiempo_insertion_sort4<<"\n"<<"Bubble sort "<<tiempo_bubble_sort4<<endl;
+	cout<<"Selection sort "<<tiempo_selection_sort4<<"\n"<<"Shell  sort "<<tiempo_shell_sort4<<endl;
+	cout<<"Merge sort "<<tiempo_merge_sort4<<"\n"<<"Quick sort "<<tiempo_quick_sort4<<endl;
+	cout<<"Heap Sort "<<tiempo_heap_sort4<<endl;
+
 }
 int TrazaObjetos(){
 	int actualim = 0,cont1=0,cont2= 0,cont3 = 0,cont4 = 0;
 
 	// ordenado
 	actualim = 0;
-   	int limiteIntervalo2ord = rand()%(1500 - 1000 + 1) + 1000;
-   	 int orden2[limiteIntervalo2ord];
-	 for (int i = 1; i <= limiteIntervalo2ord; i++) {
+   	int limiteIntervalo2 = rand()%(1500 - 1000 + 1) + 1000;
+   	 int orden2[limiteIntervalo2];
+	 for (int i = 1; i <= limiteIntervalo2; i++) {
 	 	actualim++;
 	 	cont1 ++;
         orden2[i]=i;
-        cout<<orden2[i]<<endl;
 
     }
      if(actualim >= TrazaOBJMin){
@@ -182,16 +577,15 @@ int TrazaObjetos(){
 	
 	//desordenado sin repeticion
 	actualim = 0;
-	int limiteIntervalo2DES = rand()%(1500 - 1000 + 1) + 1000;
-	int desorden2[limiteIntervalo2DES];
-	for (int i = 0; i < limiteIntervalo2DES; ++i) {
+	int desorden2[limiteIntervalo2];
+	for (int i = 0; i < limiteIntervalo2; ++i) {
 		actualim++;
 		cont2++;
         desorden2[i] = i + 1;  
     }
     random_device rd2;
     mt19937 gen2(rd2());
-    shuffle(desorden2, desorden2 + limiteIntervalo2DES, gen2);
+    shuffle(desorden2, desorden2 + limiteIntervalo2, gen2);
 	if(actualim >= TrazaOBJMin){
     	cout<<"C2 lista"<<endl;
 	}else{
@@ -200,9 +594,8 @@ int TrazaObjetos(){
 	
 	// inverso
 	actualim = 0;
-	int limiteIntervalo2REP = rand()%(1500 - 1000 + 1) + 1000;
- 	int ivdef2[limiteIntervalo2REP];
-	for(int i = limiteIntervalo2REP; i >= 1 ; i--){
+ 	int ivdef2[limiteIntervalo2];
+	for(int i = limiteIntervalo2; i >= 1 ; i--){
 		cont3++;
 		actualim++;                                 // se supone que este for debe tomar el valor maximo permitido e ir decreciendo hasta el 1 y cada posicion se ira agregando 
 		ivdef2[i] = i;
@@ -210,12 +603,11 @@ int TrazaObjetos(){
 	
 	//desordenado con repeticion
 	actualim = 0;
-	int limiteIntervalo2NRP = rand()%(1500 - 1000 + 1) + 1000;
-	int inverso2[limiteIntervalo2NRP];
-    for(int i = 0; i < limiteIntervalo2NRP; ++i){
+	int deso2[limiteIntervalo2];
+    for(int i = 0; i < limiteIntervalo2; ++i){
         cont4++;
         actualim++;
-        inverso2[i] = rand()% limiteIntervalo2NRP + 1;  // Generar número aleatorio entre 1 y TrazaOBJMax
+        deso2[i] = rand()% limiteIntervalo2 + 1;  // Generar número aleatorio entre 1 y TrazaOBJMax
     }
      if(actualim >= TrazaOBJMin){
     	cout<<"C2 lista"<<endl;
@@ -223,18 +615,256 @@ int TrazaObjetos(){
 		return -1;
 	}
 	
+	//medicion de tiempo <-----------<-------------<---------------<---------------<------------
+	
+	//ahora se debe tomar el timepo y se tomara el tiempo de cada funcion
+	cout<<"ORDEN:  "<<endl;
+	long long tiempo_selection_sort = 0;
+	long long tiempo_insertion_sort = 0;
+	long long tiempo_bubble_sort = 0;
+	long long tiempo_shell_sort = 0;
+	long long tiempo_merge_sort = 0;
+	long long tiempo_quick_sort = 0;
+	long long tiempo_heap_sort = 0;
+
+	auto start_time = high_resolution_clock::now();
+	insertion_sort(orden2,cont1);
+	auto end_time = high_resolution_clock::now();
+	auto duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_selection_sort = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	bubble_sort(orden2,cont1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_bubble_sort = duration.count();
+	
+	start_time = high_resolution_clock::now();	
+	selection_sort(orden2,cont1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_selection_sort = duration.count();
+	
+	start_time = high_resolution_clock::now();	
+	shell_sort(orden2,cont1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_shell_sort = duration.count();
+	//----------------------------------------------------------
+	start_time = high_resolution_clock::now();	
+	mergeSort(orden2,0,limiteIntervalo2-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_merge_sort = duration.count();
+	
+	start_time = high_resolution_clock::now();	
+//	quick_sort(orden2,0,limiteIntervalo2-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_quick_sort = duration.count();
+//------------------------------------------------------------------------
+//	--------------->--------->heap_sort<----------<-----------<-----------
+	start_time = high_resolution_clock::now();	
+	heapSort(orden2,limiteIntervalo2);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_heap_sort = duration.count();
+	
+	cout<<"Insertion sort "<<tiempo_insertion_sort<<"\n"<<"Bubble sort "<<tiempo_bubble_sort<<endl;
+	cout<<"Selection sort "<<tiempo_selection_sort<<"\n"<<"Shell  sort "<<tiempo_shell_sort<<endl;
+	cout<<"Merge sort "<<tiempo_merge_sort<<"\n"<<"Quick sort "<<tiempo_quick_sort<<endl;
+	cout<<"Heap Sort "<<tiempo_heap_sort<<endl;
+
+	// -------------->------------> desorden <---------<--------------<-------------------<-----------
+	
+	cout<<" \ndesordenado"<<endl;
+	long long tiempo_selection_sort2 = 0;
+	long long tiempo_insertion_sort2 = 0;
+	long long tiempo_bubble_sort2 = 0;
+	long long tiempo_shell_sort2 = 0;
+	long long tiempo_merge_sort2 = 0;
+	long long tiempo_quick_sort2 = 0;
+	long long tiempo_heap_sort2 = 0;
+	
+	
+	start_time = high_resolution_clock::now();
+	insertion_sort(desorden2,cont2);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_insertion_sort2 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	bubble_sort(desorden2,cont2);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_bubble_sort2 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	selection_sort(desorden2,cont2);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_selection_sort2 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	shell_sort(desorden2,cont2);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_shell_sort2 = duration.count();
+	//----------------------------------------------------------
+	start_time = high_resolution_clock::now();	
+	mergeSort(desorden2,0,limiteIntervalo2-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_merge_sort2 = duration.count();
+	
+	start_time = high_resolution_clock::now();	
+//	quick_sort(desorden2,0,limiteIntervalo2-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_quick_sort2= duration.count();
+//------------------------------------------------------------------------
+//	--------------->--------->heap_sort<----------<-----------------------
+	start_time = high_resolution_clock::now();	
+	heapSort(desorden2,limiteIntervalo2);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_heap_sort2 = duration.count();	
+	
+	cout<<"Insertion sort "<<tiempo_insertion_sort2<<"\n"<<"Bubble sort "<<tiempo_bubble_sort2<<endl;
+	cout<<"Selection sort "<<tiempo_selection_sort2<<"\n"<<"Shell  sort "<<tiempo_shell_sort2<<endl;
+	cout<<"Merge sort "<<tiempo_merge_sort2<<"\n"<<"Quick sort "<<tiempo_quick_sort2<<endl;
+	cout<<"Heap Sort "<<tiempo_heap_sort2<<endl;
+
+// -------------->------------> inverso <---------<--------------<-------------------<-----------
+
+cout<<"\ninverso"<<endl;
+	long long tiempo_selection_sort3 = 0;
+	long long tiempo_insertion_sort3 = 0;
+	long long tiempo_bubble_sort3 = 0;
+	long long tiempo_shell_sort3 = 0;
+	long long tiempo_merge_sort3 = 0;
+	long long tiempo_quick_sort3 = 0;
+	long long tiempo_heap_sort3 = 0;
+	
+	start_time = high_resolution_clock::now();
+	insertion_sort(ivdef2,cont3);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_insertion_sort3 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	bubble_sort(ivdef2,cont3);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_bubble_sort3 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	selection_sort(ivdef2,cont3);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_selection_sort3 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	shell_sort(ivdef2,cont3);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_shell_sort3  = duration.count();
+	//----------------------------------------------------------
+	start_time = high_resolution_clock::now();	
+	mergeSort(ivdef2,0,limiteIntervalo2-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_merge_sort3 = duration.count();
+	
+	start_time = high_resolution_clock::now();	
+//	quick_sort(ivdef2,0,limiteIntervalo2-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_quick_sort3 = duration.count();
+//------------------------------------------------------------------------
+//	--------------->----------->heap_sort<----------<--------------------
+	start_time = high_resolution_clock::now();	
+	heapSort(ivdef2,limiteIntervalo2);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_heap_sort3 = duration.count();	
+	
+	cout<<"Insertion sort "<<tiempo_insertion_sort3<<"\n"<<"Bubble sort "<<tiempo_bubble_sort3<<endl;
+	cout<<"Selection sort "<<tiempo_selection_sort3<<"\n"<<"Shell  sort "<<tiempo_shell_sort3<<endl;
+	cout<<"Merge sort "<<tiempo_merge_sort3<<"\n"<<"Quick sort "<<tiempo_quick_sort3<<endl;
+	cout<<"Heap Sort "<<tiempo_heap_sort3<<endl;
+
+// -------------->------------> desorden con repeticion <---------<--------------<-------------------<-----------
+cout<<"\ndesorden con repetir"<<endl;
+	long long tiempo_selection_sort4 = 0;
+	long long tiempo_insertion_sort4 = 0;
+	long long tiempo_bubble_sort4 = 0;
+	long long tiempo_shell_sort4 = 0;
+	long long tiempo_merge_sort4 = 0;
+	long long tiempo_quick_sort4 = 0;
+	long long tiempo_heap_sort4 = 0;
+	
+	start_time = high_resolution_clock::now();
+	insertion_sort(deso2,cont4);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_insertion_sort4 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	bubble_sort(deso2,cont4);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_bubble_sort4 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	selection_sort(deso2,cont4);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_selection_sort4 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	shell_sort(deso2,cont4);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_shell_sort4  = duration.count();
+	//----------------------------------------------------------
+	start_time = high_resolution_clock::now();	
+	mergeSort(deso2,0,limiteIntervalo2-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_merge_sort4 = duration.count();
+	
+	start_time = high_resolution_clock::now();	
+//	quick_sort(deso2,0,limiteIntervalo2-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_quick_sort4 = duration.count();
+//------------------------------------------------------------------------
+//	--------------->----------->heap_sort<----------<---------------------
+	start_time = high_resolution_clock::now();	
+	heapSort(deso2,limiteIntervalo2);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_heap_sort4 = duration.count();	
+	
+	cout<<"Insertion sort "<<tiempo_insertion_sort4<<"\n"<<"Bubble sort "<<tiempo_bubble_sort4<<endl;
+	cout<<"Selection sort "<<tiempo_selection_sort4<<"\n"<<"Shell  sort "<<tiempo_shell_sort4<<endl;
+	cout<<"Merge sort "<<tiempo_merge_sort4<<"\n"<<"Quick sort "<<tiempo_quick_sort4<<endl;
+	cout<<"Heap Sort "<<tiempo_heap_sort4<<endl;
+
+
+
 	
 }
 int Evento_Escenario(){
 	int actualim = 0,cont1=0,cont2= 0,cont3 = 0,cont4 = 0;
 	//ordenado
-   int limiteIntervalo3ORD = rand()%(80000 - 60000 + 1) + 60000;
-   int orden3[limiteIntervalo3ORD];
-	 for (int i = 1; i <= limiteIntervalo3ORD; i++) {
+   int limiteIntervalo3 = rand()%(80000 - 60000 + 1) + 60000;
+   int orden3[limiteIntervalo3];
+	 for (int i = 1; i <= limiteIntervalo3; i++) {
 	 	actualim++;
 	 	cont1++;
         orden3[i]= i;
-        cout<<orden3[i]<<endl;
     }
      if(actualim >= EventoMin){
     	cout<<"C3 lista"<<endl;
@@ -245,16 +875,15 @@ int Evento_Escenario(){
 	
 	//desordenado sin repeticion
 	actualim = 0;
-	int limiteIntervalo3DES= rand()%(80000 - 60000 + 1) + 60000;
-	int desorden3[limiteIntervalo3DES];
-	for (int i = 0; i < limiteIntervalo3DES; ++i) {
+	int desorden3[limiteIntervalo3];
+	for (int i = 0; i < limiteIntervalo3; ++i) {
 		actualim++;
 		cont2++;
         desorden3[i] = i + 1;
     }
     random_device rd3;
     mt19937 gen3(rd3());
-    shuffle(desorden3, desorden3 + limiteIntervalo3DES, gen3);	
+    shuffle(desorden3, desorden3 + limiteIntervalo3, gen3);	
 	if(actualim >= EventoMin){
     	cout<<"C3 lista"<<endl;
 	}else{
@@ -263,9 +892,8 @@ int Evento_Escenario(){
 	
 	// inverso
 	
-	int limiteIntervalo3INV = rand()%(80000 - 60000 + 1) + 60000;
- 	int ivdef3[limiteIntervalo3INV];
-	for(int i = limiteIntervalo3INV; i >= 1 ; i--){
+ 	int ivdef3[limiteIntervalo3];
+	for(int i = limiteIntervalo3; i >= 1 ; i--){
 		cont3++;
 		actualim++;                                 // se supone que este for debe tomar el valor maximo permitido e ir decreciendo hasta el 1 y cada posicion se ira agregando 
 		ivdef3[i] = i;
@@ -273,18 +901,263 @@ int Evento_Escenario(){
 	
 	//desordenado con repeticion posible
 	actualim = 0;
-    int limiteIntervalo3DDS = rand()%(80000 - 60000 + 1) + 60000;
-    int inverso3[limiteIntervalo3DDS];
-    for(int i = 0; i < limiteIntervalo3DDS; ++i){
+    int deso3[limiteIntervalo3];
+    for(int i = 0; i < limiteIntervalo3; ++i){
         cont4++;
         actualim ++;
-        inverso3[i] = rand()% limiteIntervalo3DDS + 1;  // Generar número aleatorio entre 1 y EventoMax
+        deso3[i] = rand()% limiteIntervalo3 + 1;  // Generar número aleatorio entre 1 y EventoMax
     }
 	if(actualim >= EventoMin){
     	cout<<"C3 lista"<<endl;
 	}else{
 		return -1;
 	}
+	
+	
+	//medicion de tiempo <-----------<-------------<---------------<---------------<------------
+	
+	//ahora se debe tomar el timepo y se tomara el tiempo de cada funcion
+	cout<<"ORDEN:  "<<endl;
+	long long tiempo_selection_sort = 0;
+	long long tiempo_insertion_sort = 0;
+	long long tiempo_bubble_sort = 0;
+	long long tiempo_shell_sort = 0;
+	long long tiempo_merge_sort = 0;
+	long long tiempo_quick_sort = 0;
+	long long tiempo_heap_sort = 0;
+
+	auto start_time = high_resolution_clock::now();
+	insertion_sort(orden3,cont1);
+	auto end_time = high_resolution_clock::now();
+	auto duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_selection_sort = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	bubble_sort(orden3,cont1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_bubble_sort = duration.count();
+	
+	start_time = high_resolution_clock::now();	
+	selection_sort(orden3,cont1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_selection_sort = duration.count();
+	
+	start_time = high_resolution_clock::now();	
+	shell_sort(orden3,cont1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_shell_sort = duration.count();
+	//----------------------------------------------------------
+	start_time = high_resolution_clock::now();	
+	mergeSort(orden3,0,limiteIntervalo3-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_merge_sort = duration.count();
+	
+	start_time = high_resolution_clock::now();	
+//	quick_sort(orden3,0,limiteIntervalo3-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_quick_sort = duration.count();
+//------------------------------------------------------------------------
+//	--------------->_------------->--------->heap_sort<----------<-------------
+	start_time = high_resolution_clock::now();	
+	heapSort(orden3,limiteIntervalo3);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_heap_sort = duration.count();
+
+
+	cout<<"Insertion sort "<<tiempo_insertion_sort<<"\n"<<"Bubble sort "<<tiempo_bubble_sort<<endl;
+	cout<<"Selection sort "<<tiempo_selection_sort<<"\n"<<"Shell  sort "<<tiempo_shell_sort<<endl;
+	cout<<"Merge sort "<<tiempo_merge_sort<<"\n"<<"Quick sort "<<tiempo_quick_sort<<endl;
+	cout<<"Heap Sort "<<tiempo_heap_sort<<endl;
+
+	
+	// -------------->------------> desorden <---------<--------------<-------------------<-----------
+	
+	cout<<" \ndesordenado"<<endl;
+	long long tiempo_selection_sort2 = 0;
+	long long tiempo_insertion_sort2 = 0;
+	long long tiempo_bubble_sort2 = 0;
+	long long tiempo_shell_sort2 = 0;
+	long long tiempo_merge_sort2 = 0;
+	long long tiempo_quick_sort2 = 0;
+	long long tiempo_heap_sort2 = 0;
+	
+	
+	start_time = high_resolution_clock::now();
+	insertion_sort(desorden3,cont2);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_insertion_sort2 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	bubble_sort(desorden3,cont2);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_bubble_sort2 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	selection_sort(desorden3,cont2);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_selection_sort2 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	shell_sort(desorden3,cont2);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_shell_sort2 = duration.count();
+	//----------------------------------------------------------
+	start_time = high_resolution_clock::now();	
+	mergeSort(desorden3,0,limiteIntervalo3-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_merge_sort2 = duration.count();
+	
+	start_time = high_resolution_clock::now();	
+//	quick_sort(desorden3,0,limiteIntervalo3-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_quick_sort2 = duration.count();
+//------------------------------------------------------------------------
+//	--------------->_------------->--------->heap_sort<----------<------<-<-<-<--------<------------
+	start_time = high_resolution_clock::now();	
+	heapSort(desorden3,limiteIntervalo3);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_heap_sort2 = duration.count();
+		
+	cout<<"Insertion sort "<<tiempo_insertion_sort2<<"\n"<<"Bubble sort "<<tiempo_bubble_sort2<<endl;
+	cout<<"Selection sort "<<tiempo_selection_sort2<<"\n"<<"Shell  sort "<<tiempo_shell_sort2<<endl;
+	cout<<"Merge sort "<<tiempo_merge_sort2<<"\n"<<"Quick sort "<<tiempo_quick_sort2<<endl;
+	cout<<"Heap Sort "<<tiempo_heap_sort2<<endl;
+
+// -------------->------------> inverso <---------<--------------<-------------------<-----------
+
+cout<<"\ninverso"<<endl;
+	long long tiempo_selection_sort3 = 0;
+	long long tiempo_insertion_sort3 = 0;
+	long long tiempo_bubble_sort3 = 0;
+	long long tiempo_shell_sort3 = 0;
+	long long tiempo_merge_sort3 = 0;
+	long long tiempo_quick_sort3 = 0;
+	long long tiempo_heap_sort3 = 0;
+	
+	start_time = high_resolution_clock::now();
+	insertion_sort(ivdef3,cont3);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_insertion_sort3 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	bubble_sort(ivdef3,cont3);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_bubble_sort3 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	selection_sort(ivdef3,cont3);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_selection_sort3 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	shell_sort(ivdef3,cont3);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_shell_sort3  = duration.count();
+	//----------------------------------------------------------
+	start_time = high_resolution_clock::now();	
+	mergeSort(ivdef3,0,limiteIntervalo3-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_merge_sort3 = duration.count();
+	
+	start_time = high_resolution_clock::now();	
+//	quick_sort(ivdef3,0,limiteIntervalo3-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_quick_sort3 = duration.count();
+//------------------------------------------------------------------------
+//	--------------->_------------->--------->heap_sort<----------<------<-<-<-<--------<------------
+	start_time = high_resolution_clock::now();	
+	heapSort(ivdef3,limiteIntervalo3);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_heap_sort3 = duration.count();	
+	
+	
+	cout<<"Insertion sort "<<tiempo_insertion_sort3<<"\n"<<"Bubble sort "<<tiempo_bubble_sort3<<endl;
+	cout<<"Selection sort "<<tiempo_selection_sort3<<"\n"<<"Shell  sort "<<tiempo_shell_sort3<<endl;
+	cout<<"Merge sort "<<tiempo_merge_sort3<<"\n"<<"Quick sort "<<tiempo_quick_sort3<<endl;
+	cout<<"Heap Sort "<<tiempo_heap_sort3<<endl;
+
+// -------------->------------> desorden con repeticion <---------<--------------<-------------------<-----------
+cout<<"\ndesorden con repetir"<<endl;
+	long long tiempo_selection_sort4 = 0;
+	long long tiempo_insertion_sort4 = 0;
+	long long tiempo_bubble_sort4 = 0;
+	long long tiempo_shell_sort4 = 0;
+	long long tiempo_merge_sort4 = 0;
+	long long tiempo_quick_sort4 = 0;
+	long long tiempo_heap_sort4 = 0;
+	
+	start_time = high_resolution_clock::now();
+	insertion_sort(deso3,cont4);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_insertion_sort4 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	bubble_sort(deso3,cont4);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_bubble_sort4 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	selection_sort(deso3,cont4);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_selection_sort4 = duration.count();
+	
+	start_time = high_resolution_clock::now();
+	shell_sort(deso3,cont4);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_shell_sort4  = duration.count();
+	//----------------------------------------------------------
+	start_time = high_resolution_clock::now();	
+	mergeSort(deso3,0,limiteIntervalo3-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_merge_sort2 = duration.count();
+	
+	start_time = high_resolution_clock::now();	
+//	quick_sort(deso3,0,limiteIntervalo3-1);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_quick_sort2 = duration.count();
+//------------------------------------------------------------------------
+//--------------->--------------->heap_sort<-----------------<------------
+	start_time = high_resolution_clock::now();	
+	heapSort(deso3,limiteIntervalo3);
+	end_time = high_resolution_clock::now();
+	duration = duration_cast<milliseconds>(end_time - start_time);
+	tiempo_heap_sort3 = duration.count();
+	
+	
+	cout<<"Insertion sort "<<tiempo_insertion_sort4<<"\n"<<"Bubble sort "<<tiempo_bubble_sort4<<endl;
+	cout<<"Selection sort "<<tiempo_selection_sort4<<"\n"<<"Shell  sort "<<tiempo_shell_sort4<<endl;
+	cout<<"Merge sort "<<tiempo_merge_sort4<<"\n"<<"Quick sort "<<tiempo_quick_sort4<<endl;
+	cout<<"Heap Sort "<<tiempo_heap_sort4<<endl;
+
+	
+	
+	
 	
 	
 }
@@ -486,7 +1359,7 @@ int formacion4(){ // generar umeros desordenados con repeticion repeticion
 
 int main(){
 int wh1 = 0;
-//srand(time(NULL));	
+srand(time(NULL));	
 	
 cout<<"____________________________________________________________________________________"<<endl;
 cout<<"________________________________Carrera  del  orden_________________________________"<<endl;
