@@ -5,7 +5,7 @@ el proyecto busca la implementacion correcta de algoritmos de ordenamiento de da
 para eso se implementaron en total siete algoritmos entre los cuales estan algoritmos cuadraticos y logaritmicos
 ____________________________________________________________________________________________________________________
 
-## proyecto 2 de algoritmos the castle crashers
+## proyecto 3 de algoritmos 
 ### El codigo fue realizado en el programa dev c++ en su version portable 5.11 y su compilador tiene la version de TDM-GCC 4.9.2 64-bits
 ### tenga la version de controlador que permita inicicializar variables dentro de un for
 ### colocar en opcione del compilador de dev c++ -std=c++11
