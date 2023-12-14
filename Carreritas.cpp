@@ -599,9 +599,6 @@ int TrazaObjetos(){
     random_device rd2;
     mt19937 gen2(rd2());
     shuffle(desorden2, desorden2 + limiteIntervalo2, gen2);
-    for(int i = 0; i < limiteIntervalo2; ++i){
-    	cout<<desorden2[i]<<endl;
-	}
 	if(actualim >= TrazaOBJMin){
     	cout<<"C2.2 lista"<<endl;
 	}else{
@@ -847,7 +844,7 @@ double tiempo_selection_sort3 = 0;
 	if(ganador3 < 0 || tiempo_bubble_sort3 < ganador3 ){
 		ganador3 = tiempo_bubble_sort3;
 	}
-	if(ganador3 < 0 || tiempo_selection_sort3 < ganador3 ){
+	if(ganador3 < 0 || tiempo_selection_sort3 < ganador3 ){       //      aca se verifica quien se demoro menos si una se demoro 0 esta sera la que menos tiempo tardo
 		ganador3 = tiempo_selection_sort3;
 	}
 	if(ganador3 < 0 || tiempo_shell_sort3 < ganador3 ){
