@@ -3,6 +3,9 @@
 ____________________________________________________________________________________________________________________
 el proyecto busca la implementacion correcta de algoritmos de ordenamiento de datos en distinta cantidad de numeros
 para eso se implementaron en total siete algoritmos entre los cuales estan algoritmos cuadraticos y logaritmicos
+estos se pondran a prueba midiento de distitna forma una cadena de numeros de "n" tamaño y deberan organizarla 
+hay 3 opciones de carrera y cada una contienen 4 formas distintas de organizar los numeros en cuestion
+para que luego se realize un llamado a las funciones de los algoritmos y estos hagan su trabajo
 ____________________________________________________________________________________________________________________
 
 ## proyecto 3 de algoritmos 
@@ -22,7 +25,6 @@ el codigo utilizo librerias como  :
 #include <string.h>
 #include <cstdlib>
 #include <windows.h>
-#include <queue>
 #include <algorithm>
 #include <random>
 #include <chrono>
