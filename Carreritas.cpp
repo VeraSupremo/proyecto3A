@@ -1388,7 +1388,8 @@ while(wh1== 0){
 }
 	
 	
-	
-	
+	//fin
+	cout<<"Gracias pro asistir a las carreras"<<endl
+	sleep(800);
 	return 0;
 }
