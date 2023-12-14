@@ -1,0 +1,16 @@
+install
+
+para instalar correctamente el rchivo necesita lo siguiente:
+
+tener devc++ en su version portable 5.11
+no se recomienda usar visual studio code o visual studio por posible disparidad
+o posibles errores o warnings que en la version de dev c++ no aparecen
+que el compilador sea tdm-gcc 4.9.2 64-bit
+junto a esto agregar en opciones de compilador -std=c++11 para que funciones ciertos aspectos de las funciones
+despues se necesita:
+
+seleccionar con numeros la opcion correspondiente, ahi se inicializaran las funciones
+despues se recomienda esperar a que termine cada parte y muestre los tiempos
+
+una vez terminada las funciones estas vueven al menu en donde puedes salir o intentar denuevuna vez terminado esto el programa
+se cierra.

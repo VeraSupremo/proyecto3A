@@ -209,7 +209,6 @@ int colaDEspera(){
 	 	actualim++;
 	 	cont1++;
         orden[i]= i+1;
-		cout<<orden[i]<<endl;
     }
     cout<<limiteIntervalo<<endl;
     if(actualim >= colaEsperaMin){
@@ -584,7 +583,7 @@ int TrazaObjetos(){
 
     }
      if(actualim >= TrazaOBJMin){
-    	cout<<"C2 lista"<<endl;
+    	cout<<"C21 lista"<<endl;
 	}else{
 		return -1;
 	}
@@ -600,8 +599,11 @@ int TrazaObjetos(){
     random_device rd2;
     mt19937 gen2(rd2());
     shuffle(desorden2, desorden2 + limiteIntervalo2, gen2);
+    for(int i = 0; i < limiteIntervalo2; ++i){
+    	cout<<desorden2[i]<<endl;
+	}
 	if(actualim >= TrazaOBJMin){
-    	cout<<"C2 lista"<<endl;
+    	cout<<"C2.2 lista"<<endl;
 	}else{
 		return -1;
 	}	
