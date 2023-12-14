@@ -264,7 +264,6 @@ int colaDEspera(){
 
 	auto start_time = high_resolution_clock::now();
 	insertion_sort(orden,limiteIntervalo);
-	cout<<"1 bien"<<endl;
 	auto end_time = high_resolution_clock::now();
 	auto duration = duration_cast<microseconds>(end_time - start_time);
 	tiempo_insertion_sort = duration.count();
@@ -274,7 +273,6 @@ int colaDEspera(){
 //---------------------------------------------------------------------------	
 	start_time = high_resolution_clock::now();
 	bubble_sort(orden,limiteIntervalo);
-		cout<<"2bien"<<endl;
 	end_time = high_resolution_clock::now();
 	duration = duration_cast<microseconds>(end_time - start_time);
 	tiempo_bubble_sort = duration.count();
@@ -284,7 +282,6 @@ int colaDEspera(){
 //---------------------------------------------------------------------------
 	start_time = high_resolution_clock::now();	
 	selection_sort(orden,limiteIntervalo);
-	cout<<"3 bien"<<endl;
 	end_time = high_resolution_clock::now();
 	duration = duration_cast<microseconds>(end_time - start_time);
 	tiempo_selection_sort = duration.count();
@@ -294,7 +291,6 @@ int colaDEspera(){
 //---------------------------------------------------------------------------
 	start_time = high_resolution_clock::now();	
 	shell_sort(orden,limiteIntervalo);
-	cout<<"4 bien"<<endl;
 	end_time = high_resolution_clock::now();
 	duration = duration_cast<microseconds>(end_time - start_time);
 	tiempo_shell_sort = duration.count();
@@ -320,7 +316,6 @@ int colaDEspera(){
 //	--------------->_------------->--------->heap_sort<----------<------<-<-<-<--------<------------
 	start_time = high_resolution_clock::now();	
 	heapSort(orden,limiteIntervalo);
-	cout<<"7 bien"<<endl;
 	end_time = high_resolution_clock::now();
 	duration = duration_cast<microseconds>(end_time - start_time);
 	tiempo_heap_sort = duration.count();
