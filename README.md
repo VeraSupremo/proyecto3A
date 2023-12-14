@@ -22,7 +22,6 @@ el codigo utilizo librerias como  :
 #include <string.h>
 #include <cstdlib>
 #include <windows.h>
-#include <queue>
 #include <algorithm>
 #include <random>
 #include <chrono>
