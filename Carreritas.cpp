@@ -5,7 +5,6 @@
 #include <string.h>
 #include <cstdlib>
 #include <windows.h>
-#include <queue>
 #include <algorithm>
 #include <random>
 #include <chrono>
@@ -124,7 +123,7 @@ void mergeSort(int arr[], int min, int max){
     }
 }
 //quick sort<------------<----------<-------------<-----------------
-void intercambio(int a, int b){
+void intercambio(int &a, int &b){
 	int tim = a;
 	a= b;
 	b= tim;
@@ -132,32 +131,24 @@ void intercambio(int a, int b){
 int particion(int arr[], int inicio, int fin){
     int pivote = arr[fin];
     int i = inicio - 1;
-		cout<<"parte 5"<<endl;
 
-    for (int j = inicio; j < fin; j++){
+    for (int j = inicio; j < fin-1; j++){
         if (arr[j] <= pivote) {
             i++;
             intercambio(arr[i], arr[j]);
         }
     }
-cout<<"parte 6"<<endl;
 
 
     intercambio(arr[i + 1], arr[fin]);
-    		cout<<"parte 7"<<endl;
 
     return i + 1;
 }
 void quick_sort(int arr[], int inicio, int fin){
 	if (inicio < fin){
-		cout<<"parte 1"<<endl;
         int indiceParticion = particion(arr, inicio, fin);
-       	cout<<"parte 2"<<endl;
-
         quick_sort(arr, inicio, indiceParticion - 1);
-       	cout<<"parte 3"<<endl;
-        quick_sort(arr, indiceParticion + 1, fin);
-        cout<<"parte 4"<<endl;
+		quick_sort(arr, indiceParticion + 1, fin);
 
     }	
 	
@@ -568,7 +559,6 @@ int colaDEspera(){
 	
 }
 
-
 int TrazaObjetos(){
 	int actualim = 0,cont1=0,cont2= 0,cont3 = 0,cont4 = 0;
 	float ganador = -1,ganador2 = -1,ganador3 =-1,ganador4 = -1;
@@ -671,7 +661,7 @@ int TrazaObjetos(){
 	tiempo_merge_sort = duration.count();
 	
 	start_time = high_resolution_clock::now();	
-//	quick_sort(orden2,0,limiteIntervalo2-1);
+	quick_sort(orden2,0,limiteIntervalo2-1);
 	end_time = high_resolution_clock::now();
 	duration = duration_cast<microseconds>(end_time - start_time);
 	tiempo_quick_sort = duration.count();
@@ -696,6 +686,9 @@ int TrazaObjetos(){
 	}
 	if(ganador < 0 || tiempo_merge_sort < ganador ){
 		ganador = tiempo_merge_sort;
+	}
+	if(ganador < 0 || tiempo_quick_sort < ganador ){
+		ganador = tiempo_quick_sort;
 	}
 	if(ganador < 0 || tiempo_heap_sort < ganador ){
 		ganador = tiempo_heap_sort;
@@ -748,7 +741,7 @@ int TrazaObjetos(){
 	tiempo_merge_sort2 = duration.count();
 	
 	start_time = high_resolution_clock::now();	
-//	quick_sort(desorden2,0,limiteIntervalo2-1);
+	quick_sort(desorden2,0,limiteIntervalo2-1);
 	end_time = high_resolution_clock::now();
 	duration = duration_cast<microseconds>(end_time - start_time);
 	tiempo_quick_sort2= duration.count();
@@ -773,6 +766,9 @@ int TrazaObjetos(){
 	}
 	if(ganador2 < 0 || tiempo_merge_sort2 < ganador2 ){
 		ganador2 = tiempo_merge_sort2;
+	}
+	if(ganador2 <0 || tiempo_quick_sort2 < ganador2){
+		ganador2 = tiempo_quick_sort2;
 	}
 	if(ganador2 < 0 || tiempo_heap_sort2 < ganador2 ){
 		ganador2 = tiempo_heap_sort2;
@@ -826,7 +822,7 @@ double tiempo_selection_sort3 = 0;
 	tiempo_merge_sort3 = duration.count();
 	
 	start_time = high_resolution_clock::now();	
-//	quick_sort(ivdef2,0,limiteIntervalo2-1);
+	quick_sort(ivdef2,0,limiteIntervalo2-1);
 	end_time = high_resolution_clock::now();
 	duration = duration_cast<microseconds>(end_time - start_time);
 	tiempo_quick_sort3 = duration.count();
@@ -852,6 +848,9 @@ double tiempo_selection_sort3 = 0;
 	}
 	if(ganador3 < 0 || tiempo_merge_sort3 < ganador3 ){
 		ganador3 = tiempo_merge_sort3;
+	}
+	if(ganador3 <0 || tiempo_quick_sort3 < ganador3){
+		ganador3 = tiempo_quick_sort3;
 	}
 	if(ganador3 < 0 || tiempo_heap_sort3 < ganador3 ){
 		ganador3 = tiempo_heap_sort3;
@@ -905,7 +904,7 @@ double tiempo_selection_sort4 = 0;
 	tiempo_merge_sort4 = duration.count();
 	
 	start_time = high_resolution_clock::now();	
-//	quick_sort(deso2,0,limiteIntervalo2-1);
+	quick_sort(deso2,0,limiteIntervalo2-1);
 	end_time = high_resolution_clock::now();
 	duration = duration_cast<microseconds>(end_time - start_time);
 	tiempo_quick_sort4 = duration.count();
@@ -931,6 +930,9 @@ double tiempo_selection_sort4 = 0;
 	}
 	if(ganador4 < 0 || tiempo_merge_sort4 < ganador4 ){
 		ganador4 = tiempo_merge_sort4;
+	}
+	if(ganador4 <0 || tiempo_quick_sort4 < ganador4){
+		ganador4 = tiempo_quick_sort4;
 	}
 	if(ganador4 < 0 || tiempo_heap_sort4 < ganador4 ){
 		ganador4 = tiempo_heap_sort4;
@@ -1395,6 +1397,7 @@ while(wh1== 0){
 	
 	
 	//fin
+	system("cls");
 	cout<<"Gracias pro asistir a las carreras"<<endl;
 	Sleep(800);
 	return 0;
