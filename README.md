@@ -1,5 +1,5 @@
 # proyecto 3
-##introduccion
+## introduccion
 ____________________________________________________________________________________________________________________
 el proyecto busca la implementacion correcta de algoritmos de ordenamiento de datos en distinta cantidad de numeros
 para eso se implementaron en total siete algoritmos entre los cuales estan algoritmos cuadraticos y logaritmicos
@@ -15,9 +15,20 @@ SI ENCUENTRA ALGUN PROBLEMA PARA ACCEDER POR FAVOR AVISEME A LA BREVEDAD
 
 ###breve resumen del programa
 el codigo utilizo librerias como  :
-
-
-
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <sstream>
+#include <string.h>
+#include <cstdlib>
+#include <windows.h>
+#include <queue>
+#include <algorithm>
+#include <random>
+#include <chrono>
+#include <iomanip>
+using namespace std;
+using namespace chrono;
 
 dentro del menu salen 3 opciones:
 1: cola de espera que genera un numero aleatorio entre 100000 y 110000
