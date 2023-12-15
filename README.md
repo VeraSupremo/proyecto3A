@@ -13,6 +13,8 @@ ________________________________________________________________________________
 ### tenga la version de controlador que permita inicicializar variables dentro de un for
 ### colocar en opcione del compilador de dev c++ -std=c++11
 ### link de la presentacion en drive :[video presentacion](https://drive.google.com/file/d/1ggTYmxK2hfg6FxFVk6qjJ9XjTxftkul_/view?usp=sharing)
+### link de la presentacion en youtube :[video presentacion](https://youtu.be/WznoljRqggY)
+
 SI ENCUENTRA ALGUN PROBLEMA PARA ACCEDER POR FAVOR AVISEME A LA BREVEDAD
 ### enlace ppt(si tiene algun problema por favor me puede avisar) [ppt](https://drive.google.com/drive/folders/1dmS7IhagkxSen8aac-RQlxKW10hyMRRX?usp=sharing)
 
