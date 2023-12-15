@@ -201,9 +201,9 @@ int colaDEspera(){
 	 	cont1++;
         orden[i]= i+1;
     }
-    cout<<limiteIntervalo<<endl;
+   // cout<<"DISTANCIA CARRERA: "<<limiteIntervalo<<endl;     // si desea saber el valor que dio de forma aleatoria quitar el comentario
     if(actualim >= colaEsperaMin){
-    	cout<<"C1a lista"<<endl;
+    	cout<<" "<<endl;
 	}else{
 		return -1;
 	}
@@ -220,7 +220,7 @@ int colaDEspera(){
     mt19937 gen(rd());
     shuffle(desorden1, desorden1 + colaEsperaMax, gen);
 	if(actualim >= colaEsperaMin){
-    	cout<<"C1b lista"<<endl;
+    	cout<<" "<<endl;
 	}else{
 		return -1;
 	}
@@ -234,7 +234,7 @@ int colaDEspera(){
 		actualim++;                                 // se supone que este for debe tomar el valor maximo permitido e ir decreciendo hasta el 1 y cada posicion se ira agregando 
 		ivdef[i] = i;
 	}
-	cout<<"C1c lista"<<endl;
+	cout<<"  "<<endl;
 	
 	
 	//numero desordenado con repeticion
@@ -246,7 +246,7 @@ int colaDEspera(){
         deso1[i] = rand()% limiteIntervalo + 1;  // Generar número aleatorio entre 1 y colaEsperaMax
     }
     if(actualim >= colaEsperaMin){
-    	cout<<"C1d lista"<<endl;
+    	cout<<"  "<<endl;
 	}else{
 		return -1;
 	}
@@ -323,10 +323,11 @@ int colaDEspera(){
 		ganador = tiempo_heap_sort;
 	}
 //--------------------------------------------------------------------------
-	cout<<setprecision(10)<<"Insertion sort "<<tiempo_insertion_sort<<"\n"<<"Bubble sort "<<tiempo_bubble_sort<<endl;
-	cout<<"Selection sort "<<tiempo_selection_sort<<"\n"<<"Shell  sort "<<tiempo_shell_sort<<endl;
-//	cout<<"Merge sort "<<tiempo_merge_sort<<"\n"<<"Quick sort "<<tiempo_quick_sort<<endl;
-	cout<<"Heap Sort "<<tiempo_heap_sort<<endl;
+	cout<<"A CONTINUACION SE DARA EL TIEMPO EN MICROSEGUNDOS"<<endl;
+	cout<<setprecision(10)<<"Insertion sort: "<<tiempo_insertion_sort<<"\n"<<"Bubble sort: "<<tiempo_bubble_sort<<endl;
+	cout<<"Selection sort :"<<tiempo_selection_sort<<"\n"<<"Shell  sort: "<<tiempo_shell_sort<<endl;
+//	cout<<"Merge sort: "<<tiempo_merge_sort<<"\n"<<"Quick sort: "<<tiempo_quick_sort<<endl;
+	cout<<"Heap Sort: "<<tiempo_heap_sort<<endl;
 	cout<<"El ganador es:"<<ganador<<endl;
 
 	//aca tomar el tiempo de la segunda opcion desordenado y asi mas abajo
@@ -394,10 +395,11 @@ int colaDEspera(){
 	if(ganador2 < 0 || tiempo_heap_sort2 < ganador2 ){
 		ganador2 = tiempo_heap_sort2;
 	}
-	cout<<"Insertion sort "<<tiempo_insertion_sort2<<"\n"<<"Bubble sort "<<tiempo_bubble_sort2<<endl;
-	cout<<"Selection sort "<<tiempo_selection_sort2<<"\n"<<"Shell  sort "<<tiempo_shell_sort2<<endl;
-//	cout<<"Merge sort "<<tiempo_merge_sort2<<"\n"<<"Quick sort "<<tiempo_quick_sort2<<endl;
-	cout<<"Heap Sort "<<tiempo_heap_sort2<<endl;
+		cout<<"A CONTINUACION SE DARA EL TIEMPO EN MICROSEGUNDOS"<<endl;
+	cout<<"Insertion sort: "<<tiempo_insertion_sort2<<"\n"<<"Bubble sort: "<<tiempo_bubble_sort2<<endl;
+	cout<<"Selection sort: "<<tiempo_selection_sort2<<"\n"<<"Shell  sort: "<<tiempo_shell_sort2<<endl;
+//	cout<<"Merge sort: "<<tiempo_merge_sort2<<"\n"<<"Quick sort: "<<tiempo_quick_sort2<<endl;
+	cout<<"Heap Sort: "<<tiempo_heap_sort2<<endl;
 	cout<<"Ganador: "<<ganador2<<endl;
 	
 	//inverso
@@ -471,10 +473,11 @@ int colaDEspera(){
 	if(ganador3 < 0 || tiempo_heap_sort3 < ganador3 ){
 		ganador3 = tiempo_heap_sort3;
 	}
-	cout<<"Insertion sort "<<tiempo_insertion_sort3<<"\n"<<"Bubble sort "<<tiempo_bubble_sort3<<endl;
-	cout<<"Selection sort "<<tiempo_selection_sort3<<"\n"<<"Shell  sort "<<tiempo_shell_sort3<<endl;
+	cout<<"A CONTINUACION SE DARA EL TIEMPO EN MICROSEGUNDOS"<<endl;
+	cout<<"Insertion sort: "<<tiempo_insertion_sort3<<"\n"<<"Bubble sort: "<<tiempo_bubble_sort3<<endl;
+	cout<<"Selection sort: "<<tiempo_selection_sort3<<"\n"<<"Shell  sort: "<<tiempo_shell_sort3<<endl;
 //	cout<<"Merge sort "<<tiempo_merge_sort3<<"\n"<<"Quick sort "<<tiempo_quick_sort3<<endl;
-	cout<<"Heap Sort "<<tiempo_heap_sort3<<endl;
+	cout<<"Heap Sort: "<<tiempo_heap_sort3<<endl;
 	cout<<"Ganador: "<<ganador3<<endl;
 
 	
@@ -543,17 +546,18 @@ int colaDEspera(){
 	if(ganador4 < 0 || tiempo_heap_sort4 < ganador4 ){
 		ganador4 = tiempo_heap_sort4;
 	}
-	cout<<"Insertion sort "<<tiempo_insertion_sort4<<"\n"<<"Bubble sort "<<tiempo_bubble_sort4<<endl;
-	cout<<"Selection sort "<<tiempo_selection_sort4<<"\n"<<"Shell  sort "<<tiempo_shell_sort4<<endl;
-//	cout<<"Merge sort "<<tiempo_merge_sort4<<"\n"<<"Quick sort "<<tiempo_quick_sort4<<endl;
-	cout<<"Heap Sort "<<tiempo_heap_sort4<<endl;
+		cout<<"A CONTINUACION SE DARA EL TIEMPO EN MICROSEGUNDOS"<<endl;
+
+	cout<<"Insertion sort: "<<tiempo_insertion_sort4<<"\n"<<"Bubble sort: "<<tiempo_bubble_sort4<<endl;
+	cout<<"Selection sort: "<<tiempo_selection_sort4<<"\n"<<"Shell  sort: "<<tiempo_shell_sort4<<endl;
+//	cout<<"Merge sort "<<tiempo_merge_sort4<<"\n"<<"Quick sort: "<<tiempo_quick_sort4<<endl;
+	cout<<"Heap Sort: "<<tiempo_heap_sort4<<endl;
 	cout<<"Ganador:"<<ganador4<<endl;
 	
-	cout<<"\n\nLos ganadores fueron :"<<ganador<<"  2:  "<<ganador2<<"   3:  "<<ganador3<<"  4:  "<<ganador4<<endl;
+	cout<<"\n\nLos ganadores fueron :"<<ganador<<"microsegundos  2:  "<<ganador2<<"microsegundos   3:  "<<ganador3<<"microsegundos  4:  "<<ganador4<<" microsegundos"<<endl;
 	
 	
 }
-
 int TrazaObjetos(){
 	int actualim = 0,cont1=0,cont2= 0,cont3 = 0,cont4 = 0;
 	float ganador = -1,ganador2 = -1,ganador3 =-1,ganador4 = -1;
@@ -568,7 +572,7 @@ int TrazaObjetos(){
 
     }
      if(actualim >= TrazaOBJMin){
-    	cout<<"C21 lista"<<endl;
+    	cout<<"  "<<endl;
 	}else{
 		return -1;
 	}
@@ -585,7 +589,7 @@ int TrazaObjetos(){
     mt19937 gen2(rd2());
     shuffle(desorden2, desorden2 + limiteIntervalo2, gen2);
 	if(actualim >= TrazaOBJMin){
-    	cout<<"C2.2 lista"<<endl;
+    	cout<<"  "<<endl;
 	}else{
 		return -1;
 	}	
@@ -608,13 +612,14 @@ int TrazaObjetos(){
         deso2[i] = rand()% limiteIntervalo2 + 1;  // Generar número aleatorio entre 1 y TrazaOBJMax
     }
      if(actualim >= TrazaOBJMin){
-    	cout<<"C2 lista"<<endl;
+    	cout<<"  "<<endl;
 	}else{
 		return -1;
 	}
 	
 	//medicion de tiempo <-----------<-------------<---------------<---------------<------------
-	
+// cout<<"DISTANCIA CARRERA: "<<limiteIntervalo2<<endl;     // si desea saber el valor que dio de forma aleatoria quitar el comentario
+
 	//ahora se debe tomar el timepo y se tomara el tiempo de cada funcion
 	cout<<"ORDEN:  "<<endl;
 	double tiempo_selection_sort = 0;
@@ -688,10 +693,11 @@ int TrazaObjetos(){
 	if(ganador < 0 || tiempo_heap_sort < ganador ){
 		ganador = tiempo_heap_sort;
 	}
-	cout<<setprecision(10)<<"Insertion sort "<<tiempo_insertion_sort<<"\n"<<"Bubble sort "<<tiempo_bubble_sort<<endl;
-	cout<<"Selection sort "<<tiempo_selection_sort<<"\n"<<"Shell  sort "<<tiempo_shell_sort<<endl;
-	cout<<"Merge sort "<<tiempo_merge_sort<<"\n"<<"Quick sort "<<tiempo_quick_sort<<endl;
-	cout<<"Heap Sort "<<tiempo_heap_sort<<endl;
+	cout<<"A CONTINUACION SE DARA EL TIEMPO EN MICROSEGUNDOS"<<endl;
+	cout<<"Insertion sort: "<<tiempo_insertion_sort<<"\n"<<"Bubble sort: "<<tiempo_bubble_sort<<endl;
+	cout<<"Selection sort: "<<tiempo_selection_sort<<"\n"<<"Shell  sort: "<<tiempo_shell_sort<<endl;
+	cout<<"Merge sort: "<<tiempo_merge_sort<<"\n"<<"Quick sort: "<<tiempo_quick_sort<<endl;
+	cout<<"Heap Sort: "<<tiempo_heap_sort<<endl;
 	cout<<"Ganador: "<<ganador<<endl;
 	// -------------->------------> desorden <---------<--------------<-------------------<-----------
 	ganador2 = -1;
@@ -768,11 +774,11 @@ int TrazaObjetos(){
 	if(ganador2 < 0 || tiempo_heap_sort2 < ganador2 ){
 		ganador2 = tiempo_heap_sort2;
 	}
-	
-	cout<<"Insertion sort "<<tiempo_insertion_sort2<<"\n"<<"Bubble sort "<<tiempo_bubble_sort2<<endl;
-	cout<<"Selection sort "<<tiempo_selection_sort2<<"\n"<<"Shell  sort "<<tiempo_shell_sort2<<endl;
-	cout<<"Merge sort "<<tiempo_merge_sort2<<"\n"<<"Quick sort "<<tiempo_quick_sort2<<endl;
-	cout<<"Heap Sort "<<tiempo_heap_sort2<<endl;
+	cout<<"A CONTINUACION SE DARA EL TIEMPO EN MICROSEGUNDOS"<<endl;
+	cout<<"Insertion sort: "<<tiempo_insertion_sort2<<"\n"<<"Bubble sort: "<<tiempo_bubble_sort2<<endl;
+	cout<<"Selection sort: "<<tiempo_selection_sort2<<"\n"<<"Shell  sort: "<<tiempo_shell_sort2<<endl;
+	cout<<"Merge sort: "<<tiempo_merge_sort2<<"\n"<<"Quick sort: "<<tiempo_quick_sort2<<endl;
+	cout<<"Heap Sort: "<<tiempo_heap_sort2<<endl;
 	cout<<"Ganador: "<<ganador2<<endl;
 
 // -------------->------------> inverso <---------<--------------<-------------------<-----------
@@ -789,7 +795,7 @@ double tiempo_selection_sort3 = 0;
 	start_time = high_resolution_clock::now();
 	insertion_sort(ivdef2,cont3);
 	end_time = high_resolution_clock::now();
-	duration = duration_cast<milliseconds>(end_time - start_time);
+	duration = duration_cast<microseconds>(end_time - start_time);
 	tiempo_insertion_sort3 = duration.count();
 	
 	start_time = high_resolution_clock::now();
@@ -807,7 +813,7 @@ double tiempo_selection_sort3 = 0;
 	start_time = high_resolution_clock::now();
 	shell_sort(ivdef2,cont3);
 	end_time = high_resolution_clock::now();
-	duration = duration_cast<milliseconds>(end_time - start_time);
+	duration = duration_cast<microseconds>(end_time - start_time);
 	tiempo_shell_sort3  = duration.count();
 	//----------------------------------------------------------
 	start_time = high_resolution_clock::now();	
@@ -850,11 +856,11 @@ double tiempo_selection_sort3 = 0;
 	if(ganador3 < 0 || tiempo_heap_sort3 < ganador3 ){
 		ganador3 = tiempo_heap_sort3;
 	}
-	
-	cout<<"Insertion sort "<<tiempo_insertion_sort3<<"\n"<<"Bubble sort "<<tiempo_bubble_sort3<<endl;
-	cout<<"Selection sort "<<tiempo_selection_sort3<<"\n"<<"Shell  sort "<<tiempo_shell_sort3<<endl;
-	cout<<"Merge sort "<<tiempo_merge_sort3<<"\n"<<"Quick sort "<<tiempo_quick_sort3<<endl;
-	cout<<"Heap Sort "<<tiempo_heap_sort3<<endl;
+	cout<<"A CONTINUACION SE DARA EL TIEMPO EN MICROSEGUNDOS"<<endl;
+	cout<<"Insertion sort: "<<tiempo_insertion_sort3<<"\n"<<"Bubble sort: "<<tiempo_bubble_sort3<<endl;
+	cout<<"Selection sort: "<<tiempo_selection_sort3<<"\n"<<"Shell  sort: "<<tiempo_shell_sort3<<endl;
+	cout<<"Merge sort: "<<tiempo_merge_sort3<<"\n"<<"Quick sort: "<<tiempo_quick_sort3<<endl;
+	cout<<"Heap Sort: "<<tiempo_heap_sort3<<endl;
 	cout<<"Ganador: "<<ganador3<<endl;
 
 // -------------->------------> desorden con repeticion <---------<--------------<-------------------<-----------
@@ -895,7 +901,7 @@ double tiempo_selection_sort4 = 0;
 	start_time = high_resolution_clock::now();	
 	mergeSort(deso2,0,limiteIntervalo2-1);
 	end_time = high_resolution_clock::now();
-	duration = duration_cast<milliseconds>(end_time - start_time);
+	duration = duration_cast<microseconds>(end_time - start_time);
 	tiempo_merge_sort4 = duration.count();
 	
 	start_time = high_resolution_clock::now();	
@@ -932,14 +938,15 @@ double tiempo_selection_sort4 = 0;
 	if(ganador4 < 0 || tiempo_heap_sort4 < ganador4 ){
 		ganador4 = tiempo_heap_sort4;
 	}
-	
-	cout<<"Insertion sort "<<tiempo_insertion_sort4<<"\n"<<"Bubble sort "<<tiempo_bubble_sort4<<endl;
-	cout<<"Selection sort "<<tiempo_selection_sort4<<"\n"<<"Shell  sort "<<tiempo_shell_sort4<<endl;
-	cout<<"Merge sort "<<tiempo_merge_sort4<<"\n"<<"Quick sort "<<tiempo_quick_sort4<<endl;
-	cout<<"Heap Sort "<<tiempo_heap_sort4<<endl;
+	cout<<"A CONTINUACION SE DARA EL TIEMPO EN MICROSEGUNDOS"<<endl;
+
+	cout<<"Insertion sort: "<<tiempo_insertion_sort4<<"\n"<<"Bubble sort: "<<tiempo_bubble_sort4<<endl;
+	cout<<"Selection sort: "<<tiempo_selection_sort4<<"\n"<<"Shell  sort: "<<tiempo_shell_sort4<<endl;
+	cout<<"Merge sort: "<<tiempo_merge_sort4<<"\n"<<"Quick sort: "<<tiempo_quick_sort4<<endl;
+	cout<<"Heap Sort: "<<tiempo_heap_sort4<<endl;
 	cout<<"Ganador: "<<ganador4<<endl;
 
-	cout<<"\n\nLos ganadores fueron :"<<ganador<<"  2:  "<<ganador2<<"   3:  "<<ganador3<<"  4:  "<<ganador4<<endl;
+	cout<<"\n\nLos ganadores fueron :"<<ganador<<"microsegundos  2:  "<<ganador2<<"microsegundos   3:  "<<ganador3<<"microsegundos  4:  "<<ganador4<<" microsegundos"<<endl;
 
 	
 }
@@ -955,7 +962,7 @@ int Evento_Escenario(){
         orden3[i]= i;
     }
      if(actualim >= EventoMin){
-    	cout<<"C3 lista"<<endl;
+
 	}else{
 		return -1;
 	}
@@ -973,7 +980,6 @@ int Evento_Escenario(){
     mt19937 gen3(rd3());
     shuffle(desorden3, desorden3 + limiteIntervalo3, gen3);	
 	if(actualim >= EventoMin){
-    	cout<<"C3 lista"<<endl;
 	}else{
 		return -1;
 	}
@@ -996,14 +1002,15 @@ int Evento_Escenario(){
         deso3[i] = rand()% limiteIntervalo3 + 1;  // Generar número aleatorio entre 1 y EventoMax
     }
 	if(actualim >= EventoMin){
-    	cout<<"C3 lista"<<endl;
+
 	}else{
 		return -1;
 	}
 	
 	
 	//medicion de tiempo <-----------<-------------<---------------<---------------<------------
-	
+   // cout<<"DISTANCIA CARRERA: "<<limiteIntervalo3<<endl;     // si desea saber el valor que dio de forma aleatoria quitar el comentario
+
 	//ahora se debe tomar el timepo y se tomara el tiempo de cada funcion
 	cout<<"ORDEN:  "<<endl;
 	double tiempo_selection_sort = 0;
@@ -1076,12 +1083,12 @@ int Evento_Escenario(){
 		ganador = tiempo_heap_sort;
 	}
 	
-
+	cout<<"A CONTINUACION SE DARA EL TIEMPO EN MICROSEGUNDOS"<<endl;
 	cout<<"TIEMPO"<<endl;
-	cout<<setprecision(10)<<"Insertion sort "<<tiempo_insertion_sort<<"\n"<<"Bubble sort "<<tiempo_bubble_sort<<endl;
-	cout<<"Selection sort "<<tiempo_selection_sort<<"\n"<<"Shell  sort "<<tiempo_shell_sort<<endl;
-	cout<<"Merge sort "<<tiempo_merge_sort<<"\n"/*<<"Quick sort "<<tiempo_quick_sort*/<<endl;
-	cout<<"Heap Sort "<<tiempo_heap_sort<<endl;
+	cout<<setprecision(10)<<"Insertion sort "<<tiempo_insertion_sort<<"\n"<<"Bubble sort: "<<tiempo_bubble_sort<<endl;
+	cout<<"Selection sort: "<<tiempo_selection_sort<<"\n"<<"Shell  sort: "<<tiempo_shell_sort<<endl;
+	cout<<"Merge sort: "<<tiempo_merge_sort<<"\n"/*<<"Quick sort "<<tiempo_quick_sort*/<<endl;
+	cout<<"Heap Sort: "<<tiempo_heap_sort<<endl;
 	cout<<"Ganador:"<<ganador<<endl;
 	
 	// -------------->------------> desorden <---------<--------------<-------------------<-----------
@@ -1157,11 +1164,11 @@ int Evento_Escenario(){
 	if(ganador2 < 0 || tiempo_heap_sort2 < ganador2 ){
 		ganador2 = tiempo_heap_sort2;
 	}		
-		
-	cout<<"Insertion sort "<<tiempo_insertion_sort2<<"\n"<<"Bubble sort "<<tiempo_bubble_sort2<<endl;
-	cout<<"Selection sort "<<tiempo_selection_sort2<<"\n"<<"Shell  sort "<<tiempo_shell_sort2<<endl;
-	cout<<"Merge sort "<<tiempo_merge_sort2<<"\n"<</*"Quick sort "<<tiempo_quick_sort2<<*/endl;
-	cout<<"Heap Sort "<<tiempo_heap_sort2<<endl;
+	cout<<"A CONTINUACION SE DARA EL TIEMPO EN MICROSEGUNDOS"<<endl;
+	cout<<"Insertion sort: "<<tiempo_insertion_sort2<<"\n"<<"Bubble sort: "<<tiempo_bubble_sort2<<endl;
+	cout<<"Selection sort: "<<tiempo_selection_sort2<<"\n"<<"Shell  sort: "<<tiempo_shell_sort2<<endl;
+	cout<<"Merge sort :"<<tiempo_merge_sort2<<"\n"<</*"Quick sort "<<tiempo_quick_sort2<<*/endl;
+	cout<<"Heap Sort: "<<tiempo_heap_sort2<<endl;
 	cout<<"Ganador: "<<ganador2<<endl;
 	
 // -------------->------------> inverso <---------<--------------<-------------------<-----------
@@ -1236,11 +1243,12 @@ cout<<"\ninverso"<<endl;
 	if(ganador3 < 0 || tiempo_heap_sort3 < ganador3 ){
 		ganador3 = tiempo_heap_sort3;
 	}	
+	cout<<"A CONTINUACION SE DARA EL TIEMPO EN MICROSEGUNDOS"<<endl;
 	
-	cout<<"Insertion sort "<<tiempo_insertion_sort3<<"\n"<<"Bubble sort "<<tiempo_bubble_sort3<<endl;
-	cout<<"Selection sort "<<tiempo_selection_sort3<<"\n"<<"Shell  sort "<<tiempo_shell_sort3<<endl;
-	cout<<"Merge sort "<<tiempo_merge_sort3<<"\n"/*<<"Quick sort "<<tiempo_quick_sort3*/<<endl;
-	cout<<"Heap Sort "<<tiempo_heap_sort3<<endl;
+	cout<<"Insertion sort: "<<tiempo_insertion_sort3<<"\n"<<"Bubble sort: "<<tiempo_bubble_sort3<<endl;
+	cout<<"Selection sort: "<<tiempo_selection_sort3<<"\n"<<"Shell  sort: "<<tiempo_shell_sort3<<endl;
+	cout<<"Merge sort: "<<tiempo_merge_sort3<<"\n"/*<<"Quick sort "<<tiempo_quick_sort3*/<<endl;
+	cout<<"Heap Sort: "<<tiempo_heap_sort3<<endl;
 	cout<<"Ganador: "<<ganador3<<endl;		
 
 // -------------->------------> desorden con repeticion <---------<--------------<-------------------<-----------
@@ -1315,14 +1323,14 @@ cout<<"\ninverso"<<endl;
 	if(ganador4 < 0 || tiempo_heap_sort4 < ganador4 ){
 		ganador4 = tiempo_heap_sort4;
 	}
-	
-	cout<<"Insertion sort "<<tiempo_insertion_sort4<<"\n"<<"Bubble sort "<<tiempo_bubble_sort4<<endl;
-	cout<<"Selection sort "<<tiempo_selection_sort4<<"\n"<<"Shell  sort "<<tiempo_shell_sort4<<endl;
-	cout<<"Merge sort "<<tiempo_merge_sort4<<"\n"/*<<"Quick sort "<<tiempo_quick_sort4*/<<endl;
-	cout<<"Heap Sort "<<tiempo_heap_sort4<<endl;
+	cout<<"A CONTINUACION SE DARA EL TIEMPO EN MICROSEGUNDOS"<<endl;
+	cout<<"Insertion sort: "<<tiempo_insertion_sort4<<"\n"<<"Bubble sort: "<<tiempo_bubble_sort4<<endl;
+	cout<<"Selection sort: "<<tiempo_selection_sort4<<"\n"<<"Shell  sort: "<<tiempo_shell_sort4<<endl;
+	cout<<"Merge sort: "<<tiempo_merge_sort4<<"\n"/*<<"Quick sort "<<tiempo_quick_sort4*/<<endl;
+	cout<<"Heap Sort: "<<tiempo_heap_sort4<<endl;
 	cout<<"Ganador: "<<ganador<<endl;
 	
-	cout<<"\n\nLos ganadores fueron :"<<ganador<<"  2:  "<<ganador2<<"   3:  "<<ganador3<<"  4:  "<<ganador4<<endl;
+	cout<<"\n\nLos ganadores fueron :"<<ganador<<"microsegundos  2:  "<<ganador2<<"microsegundos   3:  "<<ganador3<<"microsegundos  4:  "<<ganador4<<" microsegundos"<<endl;
 
 	
 }
@@ -1337,6 +1345,7 @@ cout<<"________________________________Carrera  del  orden______________________
 Sleep(1000);
 cout<<"                      deberas elegir con cual de ls 4 opciones                      "<<endl;
 cout<<"  crees que se ordenara mas rapido los numeros y de la forma en la que se entregaran    \n                        para ser de los mejores guardianes del reino"<<endl;
+cout<<"cabe recalcar que el tiempo estara tomado en microsegundos por si ves un gran numero"<<endl;
 cout<<"____________________________________________________________________________________"<<endl;
 Sleep(1000);
 cout<<"."<<endl;
@@ -1355,6 +1364,7 @@ system("cls");
 int question = 0;
 while(wh1== 0){
 	wh1 = 0;
+	cout<<"______________________________________________________________"<<endl;
 	cout<<"___________________Que opcion desea elegir____________________"<<endl;
 	cout<<"           Opcion_________cola de espera________1             "<<endl;  //acas edaran las opciones de que deben elegirr suceptible a cambio
 	cout<<"           Opcion____trazabilidad de objetos____2             "<<endl;

@@ -14,3 +14,5 @@ despues se recomienda esperar a que termine cada parte y muestre los tiempos
 
 una vez terminada las funciones estas vueven al menu en donde puedes salir o intentar denuevuna vez terminado esto el programa
 se cierra.
+
+el tiempo esta tomado en micro segundos para dar mas precicion a la medida.
