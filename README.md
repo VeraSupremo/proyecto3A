@@ -12,7 +12,7 @@ ________________________________________________________________________________
 ### El codigo fue realizado en el programa dev c++ en su version portable 5.11 y su compilador tiene la version de TDM-GCC 4.9.2 64-bits
 ### tenga la version de controlador que permita inicicializar variables dentro de un for
 ### colocar en opcione del compilador de dev c++ -std=c++11
-### link de la presentacion en youtube:[video presentacion]()
+### link de la presentacion en drive :[video presentacion](https://drive.google.com/file/d/1ggTYmxK2hfg6FxFVk6qjJ9XjTxftkul_/view?usp=sharing)
 SI ENCUENTRA ALGUN PROBLEMA PARA ACCEDER POR FAVOR AVISEME A LA BREVEDAD
 ### enlace ppt(si tiene algun problema por favor me puede avisar) [ppt](https://drive.google.com/drive/folders/1dmS7IhagkxSen8aac-RQlxKW10hyMRRX?usp=sharing)
 
@@ -41,3 +41,9 @@ cada una de estas opciones generara numeros los cuales se deberan analizar por c
 2: datos inversos
 3: dator aleatorios sin repeticion
 4: aleatorios con repeticion
+el tiempo se tomara en micro segundos y se limitara el numero mostrado a 10
+
+
+se adjuntara foto que evidencia la ausencia de errores o advertencias en el proyecto
+![image](https://github.com/VeraSupremo/proyecto3A/assets/114789446/2a567a91-ec0d-4608-9a88-6ff4183134c4)
+
