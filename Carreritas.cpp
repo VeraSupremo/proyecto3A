@@ -563,7 +563,8 @@ int TrazaObjetos(){
 	float ganador = -1,ganador2 = -1,ganador3 =-1,ganador4 = -1;
 	// ordenado
 	actualim = 0;
-   	int limiteIntervalo2 = rand()%(1500 - 1000 + 1) + 1000;
+   	int limiteIntervalo22 = rand()%(1500 - 1000 + 1) + 1000;
+   	int limiteIntervalo2 =limiteIntervalo22 *15;
    	 int orden2[limiteIntervalo2];
 	 for (int i = 1; i <= limiteIntervalo2; i++) {
 	 	actualim++;
